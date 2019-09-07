@@ -1,0 +1,85 @@
+﻿@model IEnumerable<MyWorkoutTracker.Models.Person>
+
+@{
+    ViewBag.Title = "Index";
+}
+<body style="background: linear-gradient(to bottom, #2e2c2c 10%, #ffffff 100%);color:black">
+    <div class="text-center" style="margin-top: 15px; margin-bottom:15px;">
+        <img src="~/Images/Logo.jpg" class="text-center img-thumbnail" style="width: 20%; border-radius:50%;" />
+    </div>
+
+    <table class="table" id="tabela">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Years)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Years)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.id }, new { @style = "color:#145214;" }) 
+                        <button class="btn-link js-delete" data-people-id="@item.id" style="color:#145214;">Delete</button>
+                        @Html.ActionLink("Add User To Role", "AddUserToRole", "Account", null, new { @style = "color:#145214;" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+   
+</body>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var table = $("#tabela").DataTable();
+            $("#tabela .js-delete").on("click", function () {
+                var button = $(this);
+                bootbox.confirm("Delete?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/People/Delete/" + button.attr("data-people-id"),
+                            method: "GET",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    }
+                });
+            });
+     });
+    </script>
+}

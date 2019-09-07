@@ -1,0 +1,80 @@
+﻿@model MyWorkoutTracker.Models.Person
+
+@{
+    ViewBag.Title = "Create";
+}
+<body style="background: linear-gradient(to bottom, #2e2c2c 10%, #ffffff 100%);">
+    <h2 class="text-success">Tell us more about you!</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4 style="color:white">Only the administrator can see your personal informations.</h4>
+        <hr />
+        <div class="row">
+            <div class="col-lg-6">
+
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2", @style = "color:white;" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2", @style = "color:white;" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Years, htmlAttributes: new { @class = "control-label col-md-2", @style = "color:white;" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Years, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Years, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2", @style = "color:white;" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default btn-success" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        @Html.ActionLink("Back to List", "Index", null, new { @class = "text-success", }, new { @class = "btn-success btn", })
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div style="margin-top: 15px; margin-bottom:15px;">
+                    <img src="~/Images/Logo.jpg" class="text-center img-thumbnail" style="width: 50%; border-radius:50%;" />
+                </div>
+                <div style="font-size:40px; font-family:SimSun" class="text-success">
+                    JOIN OUR TEAM
+                </div>
+            </div>
+        </div>
+        </div>
+
+        
+    }
+
+    <br /><br /><br /><br />
+
+</body>
