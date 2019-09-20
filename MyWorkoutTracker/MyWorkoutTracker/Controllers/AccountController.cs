@@ -55,21 +55,28 @@ namespace MyWorkoutTracker.Controllers
         }
 
 
-
+        [Authorize(Roles = "Administrator")]
         public ActionResult AddUserToRole()
         {
             var model = new AddToRoleModel();
             model.roles.Add("Administrator");
             model.roles.Add("User");
+            foreach (Person p in db.People)
+            {
+                model.emails.Add(p.Email);
+            }
+
             return View(model);
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public ActionResult AddUserToRole(AddToRoleModel model)
         {
+            
             try
             {
-                var user = UserManager.FindByEmail(model.Email);
+                var user = UserManager.FindByEmail(model.SelectedEmail);
                 UserManager.AddToRole(user.Id, model.SelectedRole);
                 return RedirectToAction("Index", "People");
             }
@@ -99,7 +106,7 @@ namespace MyWorkoutTracker.Controllers
             {
                 return View(model);
             }
-
+            
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);

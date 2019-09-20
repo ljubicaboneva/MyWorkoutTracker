@@ -11,9 +11,10 @@ using MyWorkoutTracker.Models;
 
 namespace MyWorkoutTracker.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class PeopleController : Controller
     {
-        private ApplicationUserManager _userManager;
+       
         private ApplicationDbContext db = new ApplicationDbContext();
         
 
@@ -107,6 +108,13 @@ namespace MyWorkoutTracker.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Person person = db.People.Find(id);
+            foreach(ApplicationUser p in db.Users)
+            {
+                if(person.Email == p.Email)
+                {
+                    db.Users.Remove(p);
+                }
+            }
             if (person == null)
             {
                 return HttpNotFound();
