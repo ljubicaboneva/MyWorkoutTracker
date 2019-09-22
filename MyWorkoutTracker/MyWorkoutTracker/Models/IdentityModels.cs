@@ -31,5 +31,7 @@ namespace MyWorkoutTracker.Models
         }
 
         public System.Data.Entity.DbSet<MyWorkoutTracker.Models.Person> People { get; set; }
+
+       
     }
 }

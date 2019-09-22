@@ -217,7 +217,6 @@ C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\bin\Microsoft.Owin.Secur
 C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.csprojAssemblyReference.cache
 C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.Migrations.First.resources
 C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.Migrations.Second.resources
 C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.Migrations.Third.resources
@@ -236,3 +235,12 @@ C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTrack
 C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.csproj.CopyComplete
 C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.dll
 C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.pdb
+C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.Migrations.Eight.resources
+C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.Migrations.Nine.resources
+C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.Migrations.Ten.resources
+C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.Migrations.Eleven.resources
+C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.Migrations.Twelve.resources
+C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.Migrations.Image.resources
+C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.Migrations.DeleteImage.resources
+C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.csprojAssemblyReference.cache
+C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.Migrations.AddedInfo.resources

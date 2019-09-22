@@ -13,7 +13,7 @@ namespace MyWorkoutTracker.Models
         public string SelectedEmail { get; set; }
         public List<String> roles { get; set; }
         public List<String> emails { get; set; }
-
+        public  Person person { get; set; }
         public AddToRoleModel()
         {
             roles = new List<string>();

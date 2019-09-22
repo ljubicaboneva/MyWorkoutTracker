@@ -3,57 +3,65 @@
 @{
     ViewBag.Title = "Details";
 }
+<body style="background: linear-gradient(to bottom, #2e2c2c 10%, #ffffff 100%);">
+    <div class="row">
+       <div class="col-lg-10">
+            <h2 class="text-success">@Model.FirstName @Model.LastName</h2>
+            
+            <div>
+                <h4 style="color:white">Your Profile</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dd>
+                        <i class="glyphicon glyphicon-arrow-right" style="font-size:23px;"> <span style="color:black; font-size:25px;font-family:fantasy;"> @Html.DisplayFor(model => model.Years) years old.</span></i>
+                    </dd>
+                    <dd>
+                        <i class="glyphicon glyphicon-arrow-right" style="font-size:23px;">  <span style="color:black; font-size:25px;font-family:fantasy;"> @Html.DisplayFor(model => model.Gender)</span></i>
+                    </dd>
+                    <dd>
+                        <i class="glyphicon glyphicon-arrow-right" style="font-size:23px;">   <span style="color:black; font-size:25px;font-family:fantasy;">   If you want to contact me my email is @Model.Email</span></i>
+                    </dd>
+                    <br />
+                    <br />
+                    <dd style="color:black; font-size:25px;">Share more about you!</dd>
 
-<h2>Details</h2>
+                    <dd><textarea rows="5" id="moreInfo" cols="45" style="background-color:darkgrey; color:black; " placeholder="Write something about your job, school, etc..."></textarea></dd>
+                   
 
-<div>
-    <h4>Person</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+                    <dd><button type="submit" class="btn btn-default btn-success">Add Information</button></dd>
+                   
+                    <br />
+                    <dd>
+                        @if (User.Identity.Name.Equals(Model.Email) || User.IsInRole("Administrator"))
+                        {
+                            @Html.ActionLink("Edit Basic Informations", "Edit", new { id = Model.id }, new { @class = "text-success btn-success btn" })
+                        }
+                    </dd>
+                    <br />
+                    <dd>
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            @Html.ActionLink("Back to List", "Index", null, new { @class = "text-success" }, new { @class = "btn-success btn", })
+                        }
+                    </dd>
+                </dl>
+            </div>
+            @*@using (Html.BeginForm("Details", "People", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        { <div>
+            <h3>Upload Image: </h3>
+            <input type="file" name="file" value="Browse" />
+            <br />
+            <input type="submit" value="Upload" />
+        </div>
+        }*@
+            @*@if (ViewBag.UpoladSuccess == true)
+        {
+            <span>Upolad Completed Successfully</span>
+        }*@
+            </div>
+            <div class="col-lg-2"></div>
+            </div>
+           
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Years)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Years)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</body>

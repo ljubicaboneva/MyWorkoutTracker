@@ -11,21 +11,46 @@ using MyWorkoutTracker.Models;
 
 namespace MyWorkoutTracker.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    
     public class PeopleController : Controller
     {
        
         private ApplicationDbContext db = new ApplicationDbContext();
-        
+
 
         // GET: People
+        [Authorize(Roles = "Administrator")]
         public ActionResult Index()
         {
-
+            
             return View(db.People.ToList());
         }
+      
+        //[HttpPost]
+        //public ActionResult Details(HttpPostedFileBase file)
+        //{
+        //    var path = "";
+        //    if(file != null)
+        //    {
+        //        if (file.ContentLength > 0)
+        //        {
+        //            //for checking uploaded file imaage or not
+        //            if (Path.GetExtension(file.FileName).ToLower() == ".jpg" 
+        //                   || Path.GetExtension(file.FileName).ToLower() == ".png" 
+        //                    || Path.GetExtension(file.FileName).ToLower() == ".gif"
+        //                    || Path.GetExtension(file.FileName).ToLower() == ".jpeg")
+        //            {
+        //                path = Path.Combine(Server.MapPath("~/Content/Images"), file.FileName);
+        //                file.SaveAs(path);
+        //                ViewBag.UploadSuccess = true;
+        //            }
+        //        }
+        //    }
+        //    return View();
+        //}
 
         // GET: People/Details/5
+        [Authorize(Roles = "Administrator,User,Other")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -42,6 +67,7 @@ namespace MyWorkoutTracker.Controllers
         }
 
         // GET: People/Create
+        [Authorize(Roles = "Other")]
         public ActionResult Create()
         {
             return View();
@@ -51,21 +77,25 @@ namespace MyWorkoutTracker.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Other")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,FirstName,LastName,Years,Gender,Email")] Person person)
+        public ActionResult Create([Bind(Include = "id,FirstName,LastName,Years,Gender,Email,Role")] Person person)
         {
             if (ModelState.IsValid)
             {
                 person.Email = Session["email"].ToString();
                 db.People.Add(person);
                 db.SaveChanges();
-                return RedirectToAction("Index","People");
+                Session["ID"] = person.id;
+                Session["Name"] = person.FirstName;
+                return RedirectToAction("Index","Home");
             }
 
             return View(person);
         }
 
         // GET: People/Edit/5
+        [Authorize(Roles = "Administrator,User,Other")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -87,8 +117,9 @@ namespace MyWorkoutTracker.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Administrator,User,Other")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,FirstName,LastName,Years,Gender,Email")] Person person)
+        public ActionResult Edit([Bind(Include = "id,FirstName,LastName,Years,Gender,Email,Role")] Person person)
         {
             if (ModelState.IsValid)
             {
@@ -100,7 +131,7 @@ namespace MyWorkoutTracker.Controllers
         }
 
 
-        
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -154,7 +185,7 @@ namespace MyWorkoutTracker.Controllers
         //    return RedirectToAction("Index");
         //}
 
-
+        [Authorize(Roles = "Administrator")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

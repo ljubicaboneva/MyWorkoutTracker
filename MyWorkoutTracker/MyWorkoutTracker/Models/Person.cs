@@ -20,8 +20,7 @@ namespace MyWorkoutTracker.Models
         public int Years { get; set; }
         public string Gender { get; set; }
         public string Email { get; set; }
-
-        
-
-    }
+        public String Role { get; set; }
+        public string Info { get; set; }
+     }  
 }

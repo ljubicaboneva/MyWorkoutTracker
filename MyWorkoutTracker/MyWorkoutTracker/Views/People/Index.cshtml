@@ -26,6 +26,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Email)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Role)
+                </th>
 
                 <th></th>
             </tr>
@@ -34,27 +37,40 @@
 
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Years)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Gender)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Details", "Details", new { id = item.id }, new { @style = "color:#145214;" }) 
-                        <button class="btn-link js-delete" data-people-id="@item.id" style="color:#145214;">Delete</button>
-                       </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Years)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @if (item.Role == null)
+                    {
+                        <p style="color:red">Not Selected</p>
+                    }
+                    else
+                    {
+                        <span style="color:blue">
+                            @Html.DisplayFor(modelItem => item.Role)</span>
+                            }
+
+</td>
+
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.id }, new { @style = "color:#145214;" })
+                    <button class="btn-link js-delete" data-people-id="@item.id" style="color:#145214;">Delete</button>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

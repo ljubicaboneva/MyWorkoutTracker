@@ -226,11 +226,42 @@
     <Compile Include="Migrations\201909061837588_Modifications2.Designer.cs">
       <DependentUpon>201909061837588_Modifications2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909201607027_Eight.cs" />
+    <Compile Include="Migrations\201909201607027_Eight.Designer.cs">
+      <DependentUpon>201909201607027_Eight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909201614020_Nine.cs" />
+    <Compile Include="Migrations\201909201614020_Nine.Designer.cs">
+      <DependentUpon>201909201614020_Nine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909201719537_Ten.cs" />
+    <Compile Include="Migrations\201909201719537_Ten.Designer.cs">
+      <DependentUpon>201909201719537_Ten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909201752201_Eleven.cs" />
+    <Compile Include="Migrations\201909201752201_Eleven.Designer.cs">
+      <DependentUpon>201909201752201_Eleven.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909212059164_Twelve.cs" />
+    <Compile Include="Migrations\201909212059164_Twelve.Designer.cs">
+      <DependentUpon>201909212059164_Twelve.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909212133018_Image.cs" />
+    <Compile Include="Migrations\201909212133018_Image.Designer.cs">
+      <DependentUpon>201909212133018_Image.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909212144104_DeleteImage.cs" />
+    <Compile Include="Migrations\201909212144104_DeleteImage.Designer.cs">
+      <DependentUpon>201909212144104_DeleteImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909212355109_AddedInfo.cs" />
+    <Compile Include="Migrations\201909212355109_AddedInfo.Designer.cs">
+      <DependentUpon>201909212355109_AddedInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddUserToRole.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Image.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -543,6 +574,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -596,6 +628,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909061837588_Modifications2.resx">
       <DependentUpon>201909061837588_Modifications2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909201607027_Eight.resx">
+      <DependentUpon>201909201607027_Eight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909201614020_Nine.resx">
+      <DependentUpon>201909201614020_Nine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909201719537_Ten.resx">
+      <DependentUpon>201909201719537_Ten.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909201752201_Eleven.resx">
+      <DependentUpon>201909201752201_Eleven.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909212059164_Twelve.resx">
+      <DependentUpon>201909212059164_Twelve.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909212133018_Image.resx">
+      <DependentUpon>201909212133018_Image.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909212144104_DeleteImage.resx">
+      <DependentUpon>201909212144104_DeleteImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909212355109_AddedInfo.resx">
+      <DependentUpon>201909212355109_AddedInfo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
