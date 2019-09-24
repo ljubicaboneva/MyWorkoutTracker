@@ -66,10 +66,15 @@
             }
             @if (ViewBag.UpoladSuccess == true)
             {
+
+
                 <span>Upolad Completed Successfully</span>
             }
-            
-            
+            @if (Model.PicUrl != null)
+            {
+            <img src="~/Content/Images/@Model.PicUrl" />
+            }
+
         </div>
        
         <div class="col-lg-2"></div>

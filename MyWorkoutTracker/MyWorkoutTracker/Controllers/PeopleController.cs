@@ -79,7 +79,7 @@ namespace MyWorkoutTracker.Controllers
         {
             int idPerson = (int)Session["id"];
             Person person = db.People.Find(idPerson);
-            file = person.ImageUpload;
+            
             var path = "";
             if (file != null)
             {
@@ -94,7 +94,6 @@ namespace MyWorkoutTracker.Controllers
                         path = Path.Combine(Server.MapPath("~/Content/Images"), file.FileName);
                         file.SaveAs(path);
                         ViewBag.UploadSuccess = true;
-                        person.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/Images"), file.FileName));
                         person.PicUrl = file.FileName;
                         db.SaveChanges();
                     }
