@@ -66,12 +66,6 @@ namespace MyWorkoutTracker.Controllers
             Session["id"] = id;
             
             
-            //var sessionValue = Session["MoreInfo"];
-            //if (Session["MoreInfo"].ToString() != "")
-            //{
-            //    person.Info = Session["MoreInfo"].ToString();
-            //    Session["MoreInfo"] = "";
-            //}
             if (person == null)
             {
                 return HttpNotFound();
@@ -80,30 +74,35 @@ namespace MyWorkoutTracker.Controllers
         }
 
 
-        //[HttpPost]
-        //public ActionResult Details(Person person)
-        //{
-            
-        //    //var path = "";
-        //    //if (file != null)
-        //    //{
-        //    //    if (file.ContentLength > 0)
-        //    //    {
-        //    //        //for checking uploaded file imaage or not
-        //    //        if (Path.GetExtension(file.FileName).ToLower() == ".jpg"
-        //    //               || Path.GetExtension(file.FileName).ToLower() == ".png"
-        //    //                || Path.GetExtension(file.FileName).ToLower() == ".gif"
-        //    //                || Path.GetExtension(file.FileName).ToLower() == ".jpeg")
-        //    //        {
-        //    //            path = Path.Combine(Server.MapPath("~/Content/Images"), file.FileName);
-        //    //            file.SaveAs(path);
-        //    //            ViewBag.UploadSuccess = true;
-        //    //        }
-        //    //    }
-        //    //}
+        [HttpPost]
+        public ActionResult Details(HttpPostedFileBase file)
+        {
+            int idPerson = (int)Session["id"];
+            Person person = db.People.Find(idPerson);
+            file = person.ImageUpload;
+            var path = "";
+            if (file != null)
+            {
+                if (file.ContentLength > 0)
+                {
+                    //for checking uploaded file imaage or not
+                    if (Path.GetExtension(file.FileName).ToLower() == ".jpg"
+                           || Path.GetExtension(file.FileName).ToLower() == ".png"
+                            || Path.GetExtension(file.FileName).ToLower() == ".gif"
+                            || Path.GetExtension(file.FileName).ToLower() == ".jpeg")
+                    {
+                        path = Path.Combine(Server.MapPath("~/Content/Images"), file.FileName);
+                        file.SaveAs(path);
+                        ViewBag.UploadSuccess = true;
+                        person.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/Images"), file.FileName));
+                        person.PicUrl = file.FileName;
+                        db.SaveChanges();
+                    }
+                }
+            }
 
-        //    return View();
-        //}
+            return RedirectToAction("Index", "Home");
+        }
         // GET: People/Create
         [Authorize(Roles = "Other")]
         public ActionResult Create()
