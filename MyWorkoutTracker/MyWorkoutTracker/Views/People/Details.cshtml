@@ -1,13 +1,12 @@
-﻿@model MyWorkoutTracker.Models.Person
+﻿ @model MyWorkoutTracker.Models.Person
 
 @{
     ViewBag.Title = "Details";
 }
 <body style="background: linear-gradient(to bottom, #2e2c2c 10%, #ffffff 100%);">
     <div class="row">
-       <div class="col-lg-10">
+        <div class="col-lg-10">
             <h2 class="text-success">@Model.FirstName @Model.LastName</h2>
-            
             <div>
                 <h4 style="color:white">Your Profile</h4>
                 <hr />
@@ -19,17 +18,27 @@
                         <i class="glyphicon glyphicon-arrow-right" style="font-size:23px;">  <span style="color:black; font-size:25px;font-family:fantasy;"> @Html.DisplayFor(model => model.Gender)</span></i>
                     </dd>
                     <dd>
-                        <i class="glyphicon glyphicon-arrow-right" style="font-size:23px;">   <span style="color:black; font-size:25px;font-family:fantasy;">   If you want to contact me my email is @Model.Email</span></i>
+                        <i class="glyphicon glyphicon-arrow-right" style="font-size:23px;">  <span style="color:black; font-size:25px;font-family:fantasy;">   If you want to contact me my email is @Model.Email</span></i>
                     </dd>
                     <br />
-                    <br />
+                    @if (Model.Info != null)
+                    {
+                        <dd>
+                            <i class="glyphicon glyphicon-arrow-right" style="font-size:23px;">   <span style="color:black; font-size:25px;font-family:fantasy;">@Model.Info</span></i>
+                        </dd>
+                    }
                     <dd style="color:black; font-size:25px;">Share more about you!</dd>
+                    <dd>
+                        @using (Html.BeginForm("MoreInfo", "People", FormMethod.Post))
+                        {
 
-                    <dd><textarea rows="5" id="moreInfo" cols="45" style="background-color:darkgrey; color:black; " placeholder="Write something about your job, school, etc..."></textarea></dd>
-                   
+                            <textarea name="info" class="form-control"></textarea>
+                            <input type="submit" value="Add More Information" class="btn btn-success" />
+                        }
+                    </dd>
 
-                    <dd><button type="submit" class="btn btn-default btn-success">Add Information</button></dd>
-                   
+
+
                     <br />
                     <dd>
                         @if (User.Identity.Name.Equals(Model.Email) || User.IsInRole("Administrator"))
@@ -41,27 +50,39 @@
                     <dd>
                         @if (User.IsInRole("Administrator"))
                         {
-                            @Html.ActionLink("Back to List", "Index", null, new { @class = "text-success" }, new { @class = "btn-success btn", })
+                            @Html.ActionLink("Back to List", "Index", null, new { @class = "text-success" }, new { @class = "btn-success btn" })
                         }
                     </dd>
                 </dl>
             </div>
             @*@using (Html.BeginForm("Details", "People", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        { <div>
-            <h3>Upload Image: </h3>
-            <input type="file" name="file" value="Browse" />
-            <br />
-            <input type="submit" value="Upload" />
-        </div>
-        }*@
+            { <div>
+                <h3>Upload Image: </h3>
+                <input type="file" name="file" value="Browse"/>
+                <br />
+                <input type="submit" value="Upload"/>
+            </div>
+            }*@
             @*@if (ViewBag.UpoladSuccess == true)
-        {
-            <span>Upolad Completed Successfully</span>
-        }*@
-            </div>
-            <div class="col-lg-2"></div>
-            </div>
-           
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            {
+                <span>Upolad Completed Successfully</span>
+            }*@
+        </div>
+       
+        <div class="col-lg-2"></div>
+    </div>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+   
 
 </body>
+@*<script>
+    $(document).ready(function () {
+        $(".addinfo").on("click", function () {
+            var resultat = "OK";
+            if (resultat != "") {
+                alert("PLs");
+            }
+        });
+
+    });
+</script>*@

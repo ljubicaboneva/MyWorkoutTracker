@@ -258,9 +258,18 @@
     <Compile Include="Migrations\201909212355109_AddedInfo.Designer.cs">
       <DependentUpon>201909212355109_AddedInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909231820283_Image1.cs" />
+    <Compile Include="Migrations\201909231820283_Image1.Designer.cs">
+      <DependentUpon>201909231820283_Image1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909241659220_Exercise.cs" />
+    <Compile Include="Migrations\201909241659220_Exercise.Designer.cs">
+      <DependentUpon>201909241659220_Exercise.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddUserToRole.cs" />
+    <Compile Include="Models\Exercise.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Person.cs" />
@@ -571,6 +580,7 @@
     <Content Include="Views\People\Details.cshtml" />
     <Content Include="Views\People\Edit.cshtml" />
     <Content Include="Views\People\Index.cshtml" />
+    <Content Include="Views\People\Exercise.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -652,6 +662,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909212355109_AddedInfo.resx">
       <DependentUpon>201909212355109_AddedInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909231820283_Image1.resx">
+      <DependentUpon>201909231820283_Image1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909241659220_Exercise.resx">
+      <DependentUpon>201909241659220_Exercise.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

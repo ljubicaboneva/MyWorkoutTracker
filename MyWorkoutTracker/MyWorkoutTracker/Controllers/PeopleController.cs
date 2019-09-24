@@ -11,10 +11,10 @@ using MyWorkoutTracker.Models;
 
 namespace MyWorkoutTracker.Controllers
 {
-    
+
     public class PeopleController : Controller
     {
-       
+
         private ApplicationDbContext db = new ApplicationDbContext();
 
 
@@ -22,32 +22,37 @@ namespace MyWorkoutTracker.Controllers
         [Authorize(Roles = "Administrator")]
         public ActionResult Index()
         {
-            
+
             return View(db.People.ToList());
         }
-      
+        public ActionResult Exercise()
+        {
+             return View();
+        }
         //[HttpPost]
-        //public ActionResult Details(HttpPostedFileBase file)
+        //public ActionResult Exercise()
         //{
-        //    var path = "";
-        //    if(file != null)
-        //    {
-        //        if (file.ContentLength > 0)
-        //        {
-        //            //for checking uploaded file imaage or not
-        //            if (Path.GetExtension(file.FileName).ToLower() == ".jpg" 
-        //                   || Path.GetExtension(file.FileName).ToLower() == ".png" 
-        //                    || Path.GetExtension(file.FileName).ToLower() == ".gif"
-        //                    || Path.GetExtension(file.FileName).ToLower() == ".jpeg")
-        //            {
-        //                path = Path.Combine(Server.MapPath("~/Content/Images"), file.FileName);
-        //                file.SaveAs(path);
-        //                ViewBag.UploadSuccess = true;
-        //            }
-        //        }
-        //    }
+        //    int id = (int)Session["ID"];
+        //    Person person = db.People.Find(id);
         //    return View();
         //}
+
+        [HttpPost]
+        public ActionResult MoreInfo()
+        {
+            int id = (int)Session["id"];
+            Person person = db.People.Find(id);
+            string info = Request["info"];
+            if (info != null)
+            {
+                person.Info = info;
+                db.SaveChanges();
+
+            }
+            
+            
+            return RedirectToAction("Details/" + person.id, "People");
+        }
 
         // GET: People/Details/5
         [Authorize(Roles = "Administrator,User,Other")]
@@ -58,7 +63,15 @@ namespace MyWorkoutTracker.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Person person = db.People.Find(id);
+            Session["id"] = id;
             
+            
+            //var sessionValue = Session["MoreInfo"];
+            //if (Session["MoreInfo"].ToString() != "")
+            //{
+            //    person.Info = Session["MoreInfo"].ToString();
+            //    Session["MoreInfo"] = "";
+            //}
             if (person == null)
             {
                 return HttpNotFound();
@@ -66,6 +79,31 @@ namespace MyWorkoutTracker.Controllers
             return View(person);
         }
 
+
+        //[HttpPost]
+        //public ActionResult Details(Person person)
+        //{
+            
+        //    //var path = "";
+        //    //if (file != null)
+        //    //{
+        //    //    if (file.ContentLength > 0)
+        //    //    {
+        //    //        //for checking uploaded file imaage or not
+        //    //        if (Path.GetExtension(file.FileName).ToLower() == ".jpg"
+        //    //               || Path.GetExtension(file.FileName).ToLower() == ".png"
+        //    //                || Path.GetExtension(file.FileName).ToLower() == ".gif"
+        //    //                || Path.GetExtension(file.FileName).ToLower() == ".jpeg")
+        //    //        {
+        //    //            path = Path.Combine(Server.MapPath("~/Content/Images"), file.FileName);
+        //    //            file.SaveAs(path);
+        //    //            ViewBag.UploadSuccess = true;
+        //    //        }
+        //    //    }
+        //    //}
+
+        //    return View();
+        //}
         // GET: People/Create
         [Authorize(Roles = "Other")]
         public ActionResult Create()
@@ -79,7 +117,7 @@ namespace MyWorkoutTracker.Controllers
         [HttpPost]
         [Authorize(Roles = "Other")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,FirstName,LastName,Years,Gender,Email,Role")] Person person)
+        public ActionResult Create([Bind(Include = "id,FirstName,LastName,Years,Gender,Email,Role,Info,PicUrl")] Person person)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +126,8 @@ namespace MyWorkoutTracker.Controllers
                 db.SaveChanges();
                 Session["ID"] = person.id;
                 Session["Name"] = person.FirstName;
-                return RedirectToAction("Index","Home");
+                Session["MoreInfo"] = person.Info;
+                return RedirectToAction("Index", "Home");
             }
 
             return View(person);
@@ -104,8 +143,8 @@ namespace MyWorkoutTracker.Controllers
             }
 
             Person person = db.People.Find(id);
-            
-           
+
+
             if (person == null)
             {
                 return HttpNotFound();
@@ -119,17 +158,42 @@ namespace MyWorkoutTracker.Controllers
         [HttpPost]
         [Authorize(Roles = "Administrator,User,Other")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,FirstName,LastName,Years,Gender,Email,Role")] Person person)
+        public ActionResult Edit([Bind(Include = "id,FirstName,LastName,Years,Gender,Email,Role,Info,PicUrl")] Person person)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(person).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (person.ImageUpload != null)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(person.ImageUpload.FileName);
+                    string extension = Path.GetExtension(person.ImageUpload.FileName);
+                    fileName = fileName + DateTime.Now.ToString("yymmssff") + extension;
+                    person.PicUrl = fileName;
+                    person.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/AppFile/Images"), fileName));
+                    db.Entry(person).State = EntityState.Modified;
+                    db.SaveChanges();
+                    var result = "Successfully added";
+                    return RedirectToAction("Details/" + person.id, "People");
+                }
+
             }
             return View(person);
         }
+ 
+        //[HttpPost]
+        //public ActionResult AddImage()
+        //{
+        //    var upload = Request["ImageUpload"];
+        //    int idPerson = (int)Session["id"];
+        //    Person person = db.People.Find(idPerson);
+        //    //string fileName = Path.GetFileNameWithoutExtension(person.ImageUpload.FileName);
+        //        //string extension = Path.GetExtension(person.ImageUpload.FileName);
+        //        string fileName = upload;
+        //        person.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/Images"), fileName));
+        //        person.PicUrl = fileName;
+        //        db.SaveChanges();
+        //    return RedirectToAction("Index");
 
+        //}
 
         [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
@@ -139,9 +203,9 @@ namespace MyWorkoutTracker.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Person person = db.People.Find(id);
-            foreach(ApplicationUser p in db.Users)
+            foreach (ApplicationUser p in db.Users)
             {
-                if(person.Email == p.Email)
+                if (person.Email == p.Email)
                 {
                     db.Users.Remove(p);
                 }
@@ -150,9 +214,9 @@ namespace MyWorkoutTracker.Controllers
             {
                 return HttpNotFound();
             }
-          
+
             db.People.Remove(person);
-            
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -194,5 +258,5 @@ namespace MyWorkoutTracker.Controllers
             }
             base.Dispose(disposing);
         }
- }
+    }
 }

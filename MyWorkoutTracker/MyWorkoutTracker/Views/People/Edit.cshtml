@@ -13,63 +13,68 @@
             {
                 @Html.AntiForgeryToken()
 
-            <div class="form-horizontal">
+                <div class="form-horizontal">
 
-
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.id)
-                <div class="form-group">
-                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2", @style = "color:white" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.id)
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2", @style = "color:white" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2", @style = "color:white" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2", @style = "color:white" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Years, htmlAttributes: new { @class = "control-label col-md-2", @style = "color:white" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Years, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Years, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Years, htmlAttributes: new { @class = "control-label col-md-2", @style = "color:white" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Years, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Years, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2", @style = "color:white" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2", @style = "color:white" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2", @style = "color:white" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2", @style = "color:white" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-default btn-success" />
-                    </div>
-
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        @if (User.IsInRole("Administrator"))
+                    @*@using (Html.BeginForm("AddImage", "People", FormMethod.Post))
                         {
-                            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success btn-default" })
-                        }
+                            <form id="AddNewProduct" method="post" enctype="multipart/form-data" onsubmit="return AjaxPost(this)">
+                                <input id="ImageUpload" name="ImageUpload" class="form-control" type="file" />
+                            </form>
+                        }*@
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-default btn-success" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            @if (User.IsInRole("Administrator"))
+                            {
+                                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success btn-default" })
+                            }
                         </div>
                     </div>
                 </div>
             }
-              
+
         </div>
         <div class="col-lg-5">
             <div class="text-center" style="margin-top: 15px; margin-bottom:15px;">
@@ -79,3 +84,25 @@
     </div>
     <br /><br /><br /><br /><br />
 </body>
+
+@*<script>
+        function AjaxPost(formData) {
+            var ajaxConfig = {
+                type: "post",
+                url: "/People/Edit/" ,
+                data: new FormData(formData),
+                success: function (result) {
+                    alert(result);
+                    window.location.href = "/People/Edit/" + button.attr("data-people-id");
+                }
+            }
+
+            if ($(formData).attr('enctype') == "multipart/form-data") {
+                ajaxConfig["contentType"] = false;
+                ajaxConfig["processData"] = false;
+            }
+
+            $.ajax(ajaxConfig);
+            return false;
+        }
+    </script>*@

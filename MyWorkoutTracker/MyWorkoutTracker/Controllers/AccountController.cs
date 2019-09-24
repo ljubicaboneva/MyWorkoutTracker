@@ -66,6 +66,7 @@ namespace MyWorkoutTracker.Controllers
                 model.emails.Add(p.Email);
             }
 
+
             return View(model);
         }
 
@@ -73,14 +74,15 @@ namespace MyWorkoutTracker.Controllers
         [Authorize(Roles = "Administrator")]
         public ActionResult AddUserToRole(AddToRoleModel model)
         {
-             try
+            try
             {
-               
                 var user = UserManager.FindByEmail(model.SelectedEmail);
+                UserManager.RemoveFromRolesAsync(user.Id, "Other");
                 UserManager.AddToRole(user.Id, model.SelectedRole);
                 Person p = db.People.Single(m => m.Email.Equals(model.SelectedEmail));
                 p.Role = model.SelectedRole;
                 db.SaveChanges();
+
                 return RedirectToAction("Index", "People");
             }
             catch (Exception ex)
@@ -109,13 +111,16 @@ namespace MyWorkoutTracker.Controllers
             {
                 return View(model);
             }
-            
+
+           
+
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             Person p = db.People.Single(m => m.Email.Equals(model.Email));
             Session["ID"] = p.id;
             Session["Name"] = p.FirstName;
+            Session["MoreInfo"] = p.Info;
             switch (result)
             {
                 case SignInStatus.Success:
@@ -217,15 +222,15 @@ namespace MyWorkoutTracker.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
-                
+
                 Session["email"] = model.Email;
                 UserManager.AddToRole(user.Id, "Other");
-                
+
                 Session["Name"] = "you";
 
                 if (result.Succeeded)
                 {
-                    
+
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
