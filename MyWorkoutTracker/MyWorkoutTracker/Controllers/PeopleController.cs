@@ -121,17 +121,14 @@ namespace MyWorkoutTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                person.Email = Session["email"].ToString();
-                db.People.Add(person);
+                db.Entry(person).State = EntityState.Modified;
                 db.SaveChanges();
-                Session["ID"] = person.id;
-                Session["Name"] = person.FirstName;
-                Session["MoreInfo"] = person.Info;
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Details/" + person.id, "People");
             }
 
             return View(person);
         }
+
 
         // GET: People/Edit/5
         [Authorize(Roles = "Administrator,User,Other")]
