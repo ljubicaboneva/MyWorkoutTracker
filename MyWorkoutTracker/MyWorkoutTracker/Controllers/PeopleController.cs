@@ -121,9 +121,13 @@ namespace MyWorkoutTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(person).State = EntityState.Modified;
+                person.Email = Session["email"].ToString();
+                db.People.Add(person);
                 db.SaveChanges();
-                return RedirectToAction("Details/" + person.id, "People");
+                return RedirectToAction("Index", "People");
+                Session["ID"] = person.id;
+                Session["Name"] = person.FirstName;
+                return RedirectToAction("Index", "Home");
             }
 
             return View(person);
@@ -159,20 +163,11 @@ namespace MyWorkoutTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (person.ImageUpload != null)
-                {
-                    string fileName = Path.GetFileNameWithoutExtension(person.ImageUpload.FileName);
-                    string extension = Path.GetExtension(person.ImageUpload.FileName);
-                    fileName = fileName + DateTime.Now.ToString("yymmssff") + extension;
-                    person.PicUrl = fileName;
-                    person.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/AppFile/Images"), fileName));
-                    db.Entry(person).State = EntityState.Modified;
-                    db.SaveChanges();
-                    var result = "Successfully added";
-                    return RedirectToAction("Details/" + person.id, "People");
-                }
-
+                db.Entry(person).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Details/" + person.id, "People");
             }
+
             return View(person);
         }
  
