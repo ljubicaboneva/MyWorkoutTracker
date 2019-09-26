@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ExercisesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
@@ -265,6 +266,26 @@
     <Compile Include="Migrations\201909241659220_Exercise.cs" />
     <Compile Include="Migrations\201909241659220_Exercise.Designer.cs">
       <DependentUpon>201909241659220_Exercise.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909250023591_ImagesEdit.cs" />
+    <Compile Include="Migrations\201909250023591_ImagesEdit.Designer.cs">
+      <DependentUpon>201909250023591_ImagesEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909251140011_AddExercises.cs" />
+    <Compile Include="Migrations\201909251140011_AddExercises.Designer.cs">
+      <DependentUpon>201909251140011_AddExercises.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909251243309_ListExe.cs" />
+    <Compile Include="Migrations\201909251243309_ListExe.Designer.cs">
+      <DependentUpon>201909251243309_ListExe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909252346384_Edit.cs" />
+    <Compile Include="Migrations\201909252346384_Edit.Designer.cs">
+      <DependentUpon>201909252346384_Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909260143386_Exercise1.cs" />
+    <Compile Include="Migrations\201909260143386_Exercise1.Designer.cs">
+      <DependentUpon>201909260143386_Exercise1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -438,6 +459,8 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\Images\female.png" />
+    <Content Include="Content\Images\male.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -580,11 +603,10 @@
     <Content Include="Views\People\Details.cshtml" />
     <Content Include="Views\People\Edit.cshtml" />
     <Content Include="Views\People\Index.cshtml" />
-    <Content Include="Views\People\Exercise.cshtml" />
+    <Content Include="Views\Exercises\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -668,6 +690,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909241659220_Exercise.resx">
       <DependentUpon>201909241659220_Exercise.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909250023591_ImagesEdit.resx">
+      <DependentUpon>201909250023591_ImagesEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909251140011_AddExercises.resx">
+      <DependentUpon>201909251140011_AddExercises.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909251243309_ListExe.resx">
+      <DependentUpon>201909251243309_ListExe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909252346384_Edit.resx">
+      <DependentUpon>201909252346384_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909260143386_Exercise1.resx">
+      <DependentUpon>201909260143386_Exercise1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

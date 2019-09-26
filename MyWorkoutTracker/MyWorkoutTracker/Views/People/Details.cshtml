@@ -4,14 +4,49 @@
     ViewBag.Title = "Details";
 }
 <body style="background: linear-gradient(to bottom, #2e2c2c 10%, #ffffff 100%);">
-    <div class="row">
-        <div class="col-lg-10">
-            <h2 class="text-success">@Model.FirstName @Model.LastName</h2>
-            <div>
-                <h4 style="color:white">Your Profile</h4>
-                <hr />
-                <dl class="dl-horizontal">
+
+    <h2 class="text-success">@Model.FirstName @Model.LastName</h2>
+    <div>
+        <h4 style="color:white">Your Profile</h4>
+        <hr />
+
+        <dl class="dl-horizontal">
+            <div class="row">
+                <div class="col-lg-4">
                     <dd>
+                        @if (Model.PicUrl != null)
+                        {
+                            <img class="img-circle" style="width:220px; height:200px;  border:solid; border-color:black" src="~/Content/Images/@Model.PicUrl" />
+                        }
+                        else
+                        {
+                            if (Model.Gender == "Male")
+                            {
+                                <img class="img-circle" style=" width:220px;  height:200px;  border:solid; border-color:black" src="~/Content/Images/male.png" />
+                            }
+                            else if (Model.Gender == "Female")
+                            {
+                                <img class="img-circle" style=" width:220px;  height:200px; border:solid; border-color:black" src="~/Content/Images/female.png" />
+                            }
+                        }
+                    </dd>
+                    <br />
+                    <dd>
+                        @using (Html.BeginForm("Details", "People", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {<div>
+                                <h3>Upload Image: </h3>
+                                <input type="file" name="file" value="Browse" class="btn btn-success" />
+                                <br />
+                                <input type="submit" value="Upload" class="btn btn-success" />
+                            </div>
+                        }
+
+                    </dd>
+                </div>
+                <div class="col-lg-8">
+
+                    <dd>
+
                         <i class="glyphicon glyphicon-arrow-right" style="font-size:23px;"> <span style="color:black; font-size:25px;font-family:fantasy;"> @Html.DisplayFor(model => model.Years) years old.</span></i>
                     </dd>
                     <dd>
@@ -36,9 +71,13 @@
                             <input type="submit" value="Add More Information" class="btn btn-success" />
                         }
                     </dd>
+                    <dd>
+                        <div class="form-group">
+                            @Html.DropDownListFor(m => m.exeId, new SelectList(Model.Exercises, "Id", "Name"), new { @class = "form-control" })
+                        </div>
+                       
 
-
-
+                    </dd>
                     <br />
                     <dd>
                         @if (User.Identity.Name.Equals(Model.Email) || User.IsInRole("Administrator"))
@@ -52,45 +91,14 @@
                         {
                             @Html.ActionLink("Back to List", "Index", null, new { @class = "text-success" }, new { @class = "btn-success btn" })
                         }
+
                     </dd>
-                </dl>
-            </div>
-
-            @using (Html.BeginForm("Details", "People", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {<div>
-                    <h3>Upload Image: </h3>
-                    <input type="file" name="file" value="Browse" />
-                    <br />
-                    <input type="submit" value="Upload" />
                 </div>
-            }
-            @if (ViewBag.UpoladSuccess == true)
-            {
-
-
-                <span>Upolad Completed Successfully</span>
-            }
-            @if (Model.PicUrl != null)
-            {
-            <img src="~/Content/Images/@Model.PicUrl" />
-            }
-
-        </div>
-       
-        <div class="col-lg-2"></div>
+            </div>
+        </dl>
     </div>
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-   
+
+    <br />
+
 
 </body>
-@*<script>
-    $(document).ready(function () {
-        $(".addinfo").on("click", function () {
-            var resultat = "OK";
-            if (resultat != "") {
-                alert("PLs");
-            }
-        });
-
-    });
-</script>*@

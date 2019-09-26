@@ -77,7 +77,6 @@ namespace MyWorkoutTracker.Controllers
             try
             {
                 var user = UserManager.FindByEmail(model.SelectedEmail);
-                UserManager.RemoveFromRolesAsync(user.Id, "Other");
                 UserManager.AddToRole(user.Id, model.SelectedRole);
                 Person p = db.People.Single(m => m.Email.Equals(model.SelectedEmail));
                 p.Role = model.SelectedRole;
@@ -111,8 +110,16 @@ namespace MyWorkoutTracker.Controllers
             {
                 return View(model);
             }
+            String idPeople = null;
+            foreach (ApplicationUser u in db.Users)
+            {
+                if (model.Email == u.Email)
+                {
+                    idPeople = u.Id;
+                }
+            }
+            await UserManager.RemoveFromRolesAsync(idPeople, "Other");
 
-           
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true

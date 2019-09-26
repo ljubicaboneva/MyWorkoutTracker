@@ -25,17 +25,10 @@ namespace MyWorkoutTracker.Controllers
 
             return View(db.People.ToList());
         }
-        public ActionResult Exercise()
-        {
-             return View();
-        }
-        //[HttpPost]
-        //public ActionResult Exercise()
-        //{
-        //    int id = (int)Session["ID"];
-        //    Person person = db.People.Find(id);
-        //    return View();
-        //}
+       
+           
+           
+       
 
         [HttpPost]
         public ActionResult MoreInfo()
@@ -117,6 +110,7 @@ namespace MyWorkoutTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,FirstName,LastName,Years,Gender,Email,Role,Info,PicUrl")] Person person)
         {
+            
             if (ModelState.IsValid)
             {
                 person.Email = Session["email"].ToString();
@@ -159,6 +153,7 @@ namespace MyWorkoutTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,FirstName,LastName,Years,Gender,Email,Role,Info,PicUrl")] Person person)
         {
+            
             if (ModelState.IsValid)
             {
                 db.Entry(person).State = EntityState.Modified;
