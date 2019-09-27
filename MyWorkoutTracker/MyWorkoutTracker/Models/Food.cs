@@ -13,6 +13,13 @@ namespace MyWorkoutTracker.Models
         public int Kcal { get; set; }
         public int Count { get; set; }
         public string PicUrl { get; set; }
-
+        public List<Food> foods { get; set; }
+        public List<Person> people { get; set; }
+        public Food()
+        {
+            foods =  new List<Food>();
+            people = new List<Person>();
+        }
+        
     }
 }

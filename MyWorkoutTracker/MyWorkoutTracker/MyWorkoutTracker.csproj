@@ -169,6 +169,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ExercisesController.cs" />
+    <Compile Include="Controllers\FinalController.cs" />
+    <Compile Include="Controllers\FoodsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
@@ -322,6 +324,14 @@
     <Compile Include="Migrations\201909271306315_Food2.cs" />
     <Compile Include="Migrations\201909271306315_Food2.Designer.cs">
       <DependentUpon>201909271306315_Food2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909271557418_updates.cs" />
+    <Compile Include="Migrations\201909271557418_updates.Designer.cs">
+      <DependentUpon>201909271557418_updates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909271607257_updates1.cs" />
+    <Compile Include="Migrations\201909271607257_updates1.Designer.cs">
+      <DependentUpon>201909271607257_updates1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -642,6 +652,8 @@
     <Content Include="Views\People\Index.cshtml" />
     <Content Include="Views\Exercises\Index.cshtml" />
     <Content Include="Views\Exercises\Description.cshtml" />
+    <Content Include="Views\Final\Index.cshtml" />
+    <Content Include="Views\Foods\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -770,6 +782,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909271306315_Food2.resx">
       <DependentUpon>201909271306315_Food2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909271557418_updates.resx">
+      <DependentUpon>201909271557418_updates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909271607257_updates1.resx">
+      <DependentUpon>201909271607257_updates1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

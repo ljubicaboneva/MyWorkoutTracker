@@ -26,9 +26,12 @@ namespace MyWorkoutTracker.Models
         public int exeId { get; set; }
         public string PicUrl { get; set; }
         public virtual ICollection<Exercise> Exercises { get; set; }
+        public virtual ICollection<Food> Foods { get; set; }
         public Person()
         {
             Exercises = new List<Exercise>();
+            Foods = new List<Food>();
+
         }
         
     }  

@@ -1,0 +1,45 @@
+﻿@model MyWorkoutTracker.Models.Food
+@{
+    ViewBag.Title = "Index";
+    
+}
+<br /><br />
+<body style="background: linear-gradient(to bottom, #2e2c2c 10%, #ffffff 100%);">
+
+    <div class="row">
+        <div class="col-lg-3">
+            @foreach (var item in Model.foods)
+            {
+
+                <a data-food-id="@item.id" data-kcal="@item.Kcal" data-desc="@item.Description" data-img="@item.PicUrl"  data-food-name="@item.Name" class="list-group-item js-food" href="#">@item.Name</a>
+                
+
+            }
+    </div>
+        <div class="col-lg-9">
+            <div id="okk" class="col-9" style="display:none">
+                <div>My meal for today is <div id="info"></div></div>
+                <img class="image"/>
+            </div>
+        </div>
+    </div>
+</body>
+
+@section scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".js-food").click(function () {
+                var name = $(this).data('food-name')
+                var id = $(this).data('food-id')
+                var pic =  $(this).data('img');
+                var kcal = $(this).data('kcal')
+                var desc = $(this).data('desc')
+                $("#info").text("Name " + name + " id=" + id + " kcal: " + kcal + pic + " " + desc);
+                $(".image").attr('src', '/Content/Images/'+pic);
+                $("#okk").show();
+            });
+        });
+    </script>
+
+}

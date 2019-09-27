@@ -1,0 +1,48 @@
+﻿@model  MyWorkoutTracker.Models.Person
+@{
+    ViewBag.Title = "Index";
+}
+<body style="background: linear-gradient(to bottom, #2e2c2c 10%, #ffffff 100%);color:black">
+    <div class="text-center" style="margin-top: 15px; margin-bottom:15px;">
+        <img src="~/Images/Logo.jpg" class="text-center img-thumbnail" style="width: 20%; border-radius:50%;" />
+    </div>
+
+    <table class="table" id="tabela">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Exercises)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Foods)
+                </th>
+               
+
+                
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model.Exercises)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+
+
+                    <td>
+                      
+                        <button class="btn-link js-delete" data-people-id="@item.id" style="color:#145214;">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+</body>
+

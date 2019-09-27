@@ -72,19 +72,7 @@
                         }
                     </dd>
                     <dd>
-                        <div class="form-group">
-                            <ul>
-                                @{
-                                    foreach (var e in Model.Exercises)
-                                    {
-                                        
-                                <li>@Html.ActionLink(e.Name, "Description","Exercises", new { id = e.id }, new { @style = "color:#145214;" })</li>
-                                    }
-                                }
-                            </ul>
-                           
-                        </div>
-
+                       
 
                     </dd>
                     <br />
@@ -108,7 +96,48 @@
     </div>
 
     <br />
+    <hr />
+
+    <div class="row">
+        <div class="col-lg-5">
+
+            <div class="form-group">
+                <h2 style="font-family:SimSun; color:#145214; font-size:35px;">Your exercises:</h2>
+                <ul>
+                    @{
+                        foreach (var e in Model.Exercises)
+                        {
+
+                            <li>@Html.ActionLink(e.Name, "Description", "Exercises", new { id = e.id }, new { @style = "color:#145214; font-size:30px; font-family:fantasy;" })</li>
+                        }
+                    }
+                </ul>
+
+            </div>
+
+        </div>
+        <div class="col-lg-5">
+
+            <div class="form-group">
+                <h2 style="font-family:SimSun; color:#145214; font-size:35px;">Your meals:</h2>
+                <ul>
+                    @{
+                        foreach (var e in Model.Exercises)
+                        {
+
+                            <li>@Html.ActionLink(e.Name, "Description", "Exercises", new { id = e.id }, new { @style = "color:#145214; font-size:30px; font-family:fantasy;" })</li>
+                        }
+                    }
+                </ul>
+
+            </div>
+        </div>
+            <div class="col-lg-2">
+                <input type="button" class="btn btn-success" value="Finish" />
+            </div>
+
+        
+    </div>
 
 
 </body>
-}
