@@ -307,10 +307,27 @@
     <Compile Include="Migrations\201909262349129_AddExercise2.Designer.cs">
       <DependentUpon>201909262349129_AddExercise2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909271155361_PicUrl.cs" />
+    <Compile Include="Migrations\201909271155361_PicUrl.Designer.cs">
+      <DependentUpon>201909271155361_PicUrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909271236560_Food.cs" />
+    <Compile Include="Migrations\201909271236560_Food.Designer.cs">
+      <DependentUpon>201909271236560_Food.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909271238181_Food1.cs" />
+    <Compile Include="Migrations\201909271238181_Food1.Designer.cs">
+      <DependentUpon>201909271238181_Food1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909271306315_Food2.cs" />
+    <Compile Include="Migrations\201909271306315_Food2.Designer.cs">
+      <DependentUpon>201909271306315_Food2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddUserToRole.cs" />
     <Compile Include="Models\Exercise.cs" />
+    <Compile Include="Models\Food.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Person.cs" />
@@ -624,6 +641,7 @@
     <Content Include="Views\People\Edit.cshtml" />
     <Content Include="Views\People\Index.cshtml" />
     <Content Include="Views\Exercises\Index.cshtml" />
+    <Content Include="Views\Exercises\Description.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -740,6 +758,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909262349129_AddExercise2.resx">
       <DependentUpon>201909262349129_AddExercise2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909271155361_PicUrl.resx">
+      <DependentUpon>201909271155361_PicUrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909271236560_Food.resx">
+      <DependentUpon>201909271236560_Food.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909271238181_Food1.resx">
+      <DependentUpon>201909271238181_Food1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909271306315_Food2.resx">
+      <DependentUpon>201909271306315_Food2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

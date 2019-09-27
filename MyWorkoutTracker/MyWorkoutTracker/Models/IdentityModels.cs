@@ -32,7 +32,7 @@ namespace MyWorkoutTracker.Models
 
         public System.Data.Entity.DbSet<MyWorkoutTracker.Models.Person> People { get; set; }
         public System.Data.Entity.DbSet<MyWorkoutTracker.Models.Exercise> Exercises { get; set; }
-
+        public System.Data.Entity.DbSet<MyWorkoutTracker.Models.Food> Foods { get; set; }
 
     }
 }

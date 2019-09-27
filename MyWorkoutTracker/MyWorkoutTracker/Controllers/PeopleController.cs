@@ -116,7 +116,7 @@ namespace MyWorkoutTracker.Controllers
                 person.Email = Session["email"].ToString();
                 db.People.Add(person);
                 db.SaveChanges();
-                return RedirectToAction("Index", "People");
+              
                 Session["ID"] = person.id;
                 Session["Name"] = person.FirstName;
                 return RedirectToAction("Index", "Home");

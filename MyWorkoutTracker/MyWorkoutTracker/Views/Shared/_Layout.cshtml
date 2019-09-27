@@ -32,7 +32,9 @@
                     }
                         <li><a href="~/Home/About"><i font-size:20px;" class="glyphicon glyphicon-info-sign"></i> About</a></li>
                         <li><a href="~/Home/Contact"><i font-size:20px;" class="glyphicon glyphicon-phone-alt"></i> Contact</a></li>
-
+                    @if (User.IsInRole("User")|| User.IsInRole("Administrator")) {
+                        <li><a href="~/Exercises/Index"><i font-size:20px;" class="glyphicon glyphicon-list"></i>Add Exercises</a></li>
+                    }
                     </ul>
                 @Html.Partial("_LoginPartial")
             </div>

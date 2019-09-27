@@ -1,4 +1,4 @@
-﻿ @model MyWorkoutTracker.Models.Person
+﻿@model MyWorkoutTracker.Models.Person
 
 @{
     ViewBag.Title = "Details";
@@ -73,9 +73,18 @@
                     </dd>
                     <dd>
                         <div class="form-group">
-                            @Html.DropDownListFor(m => m.exeId, new SelectList(Model.Exercises,"Id","Name"), new { @class = "form-control" })
+                            <ul>
+                                @{
+                                    foreach (var e in Model.Exercises)
+                                    {
+                                        
+                                <li>@Html.ActionLink(e.Name, "Description","Exercises", new { id = e.id }, new { @style = "color:#145214;" })</li>
+                                    }
+                                }
+                            </ul>
+                           
                         </div>
-                       
+
 
                     </dd>
                     <br />
@@ -102,3 +111,4 @@
 
 
 </body>
+}

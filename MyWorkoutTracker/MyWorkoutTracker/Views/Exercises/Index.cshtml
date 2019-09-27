@@ -19,8 +19,8 @@
                         <br />
                         <p class="card-text" style="color:white">Quick sample text to create the card title and make up the body of the card's content.</p>
                         <div>
-                            <input onclick="change(this)" value="Add" type="button" id="btnAddProfile" class="btn btn-success js-add" data-exercise-id="@item.id">
-                            <label id="successmessage"></label>
+                            <input onclick="change(this)" value="Add" type="button" id="Add" class="btn btn-success js-add" data-exercise-id="@item.id">
+                           
                         </div>
 
                     </div>
@@ -48,27 +48,32 @@
         $(document).ready(function () {
             $(".js-add").on("click", function () {
                 var button = $(this);
-                //bootbox.confirm("Add to your list?", function (result) {
-                //    if (result) {
+                
                 $.ajax({
                     url: "/Exercises/Add/" + button.attr("data-exercise-id"),
                     method: "GET",
                     success: function () {
-                            //button.attr('disabled', true);
+                        
                     }
                 });
-                //    }
-                //});
+                
             });
         });
 
 
     </script>
-    @*<script type="text/javascript">
-        function change(value) {
-
-            if (value.innerHTML == "Add") value.innerHTML = "Added";
-            else value.innerHTML = "Add";
+    <script type="text/javascript">
+        function change(selected) {
+            selected.value = (selected.value == 'Add') ? ('Added') : ('Add')
+            $(selected).fadeTo('fast', 0.2);
+            $(selected).attr('disabled', true);
+                
         }
-    </script>*@
+    </script>
+    @*<style type="text/css">
+        .add {
+            color: blue;
+        }
+    </style>*@
+
 }
