@@ -287,6 +287,26 @@
     <Compile Include="Migrations\201909260143386_Exercise1.Designer.cs">
       <DependentUpon>201909260143386_Exercise1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909261407542_edittttttt.cs" />
+    <Compile Include="Migrations\201909261407542_edittttttt.Designer.cs">
+      <DependentUpon>201909261407542_edittttttt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909261542225_OK.cs" />
+    <Compile Include="Migrations\201909261542225_OK.Designer.cs">
+      <DependentUpon>201909261542225_OK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909262318309_AddExercise.cs" />
+    <Compile Include="Migrations\201909262318309_AddExercise.Designer.cs">
+      <DependentUpon>201909262318309_AddExercise.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909262331267_AddExercise1.cs" />
+    <Compile Include="Migrations\201909262331267_AddExercise1.Designer.cs">
+      <DependentUpon>201909262331267_AddExercise1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909262349129_AddExercise2.cs" />
+    <Compile Include="Migrations\201909262349129_AddExercise2.Designer.cs">
+      <DependentUpon>201909262349129_AddExercise2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddUserToRole.cs" />
@@ -705,6 +725,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909260143386_Exercise1.resx">
       <DependentUpon>201909260143386_Exercise1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909261407542_edittttttt.resx">
+      <DependentUpon>201909261407542_edittttttt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909261542225_OK.resx">
+      <DependentUpon>201909261542225_OK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909262318309_AddExercise.resx">
+      <DependentUpon>201909262318309_AddExercise.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909262331267_AddExercise1.resx">
+      <DependentUpon>201909262331267_AddExercise1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909262349129_AddExercise2.resx">
+      <DependentUpon>201909262349129_AddExercise2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

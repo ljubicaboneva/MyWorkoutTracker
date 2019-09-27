@@ -250,4 +250,9 @@ C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\bin\Microsoft.CodeDom.Pr
 C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.csproj.CopyComplete
 C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.dll
 C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.pdb
+C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.Migrations.edittttttt.resources
+C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.Migrations.OK.resources
+C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.Migrations.AddExercise.resources
+C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.Migrations.AddExercise1.resources
+C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.Migrations.AddExercise2.resources
 C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.csprojAssemblyReference.cache

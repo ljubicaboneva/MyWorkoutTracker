@@ -15,8 +15,13 @@ namespace MyWorkoutTracker.Models
         public string Name { get; set; }
         public string Description { get; set; }
         [Display(Name = "Add this exercise to my list")]
-        public bool isSelected { get; set; }
-        public bool isChecked { get; set; }
-       
+        
+        public List<String> Names { get; set; }
+        public string Added { get; set; }
+        public List<Person> peoples { get; set; }
+        public Exercise()
+        {
+            Names = new List<String>();
+        }
     }
 }
