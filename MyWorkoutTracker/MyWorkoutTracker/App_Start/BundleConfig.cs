@@ -26,6 +26,8 @@ namespace MyWorkoutTracker
                       "~/Scripts/bootbox.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/animate.css",
+                      "~/Content/animate.min.css",
                       "~/Content/bootstrap.css",
                        "~/Content/DataTables/css/dataTables.bootstrap.css",
                       "~/Content/site.css"));

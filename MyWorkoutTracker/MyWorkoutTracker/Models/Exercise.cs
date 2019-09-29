@@ -16,6 +16,7 @@ namespace MyWorkoutTracker.Models
         public string Description { get; set; }
         public List<Person> peoples { get; set; }
         public string PicUrl { get; set; }
-        
+        public int burnedKcal { get; set; }
+
     }
 }

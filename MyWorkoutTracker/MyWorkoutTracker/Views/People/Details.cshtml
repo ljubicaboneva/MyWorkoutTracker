@@ -1,143 +1,161 @@
 ﻿@model MyWorkoutTracker.Models.Person
 
-@{
-    ViewBag.Title = "Details";
-}
-<body style="background: linear-gradient(to bottom, #2e2c2c 10%, #ffffff 100%);">
+    @{
+        ViewBag.Title = "Details";
+    }
+<head>
+    <link rel="stylesheet" href="~/Content/animate.min.css">
+    <link rel="stylesheet" href="~/Content/animate.css">
+</head>
 
-    <h2 class="text-success">@Model.FirstName @Model.LastName</h2>
-    <div>
-        <h4 style="color:white">Your Profile</h4>
+<body class="animated fadeIn" style="background: linear-gradient(to bottom, #2e2c2c 10%, #ffffff 100%);">
+    @if (User.Identity.Name.Equals(Model.Email) || User.IsInRole("Administrator"))
+    {
+        <h2 class="text-success animated zoomInRight">@Model.FirstName @Model.LastName</h2>
+        <div>
+            <h4 style="color:white">Your Profile</h4>
+            <hr />
+
+            <dl class="dl-horizontal">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <dd>
+                            @if (Model.PicUrl != null)
+                            {
+                                <img class="img-circle" style="width:220px; height:200px;  border:solid; border-color:black" src="~/Content/Images/@Model.PicUrl" />
+                            }
+                            else
+                            {
+                                if (Model.Gender == "Male")
+                                {
+                                    <img class="img-circle" style=" width:220px;  height:200px;  border:solid; border-color:black" src="~/Content/Images/male.png" />
+                                }
+                                else if (Model.Gender == "Female")
+                                {
+                                    <img class="img-circle" style=" width:220px;  height:200px; border:solid; border-color:black" src="~/Content/Images/female.png" />
+                                }
+                            }
+                        </dd>
+                        <br />
+                        <dd>
+                            @using (Html.BeginForm("Details", "People", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {<div>
+                                    <h3>Upload Image: </h3>
+                                    <input type="file" name="file" value="Browse" class="btn btn-success" />
+                                    <br />
+                                    <input type="submit" value="Upload" class="btn btn-success" />
+                                </div>
+                            }
+
+                        </dd>
+                    </div>
+                    <div class="col-lg-8">
+
+                        <dd>
+
+                            <i class="glyphicon glyphicon-arrow-right" style="font-size:23px;"> <span style="color:black; font-size:25px;font-family:fantasy;" class=" animated zoomInRight"> @Html.DisplayFor(model => model.Years) years old.</span></i>
+                        </dd>
+                        <dd>
+                            <i class="glyphicon glyphicon-arrow-right" style="font-size:23px;">  <span style="color:black; font-size:25px;font-family:fantasy;" class=" animated zoomInRight"> @Html.DisplayFor(model => model.Gender)</span></i>
+                        </dd>
+                        <dd>
+                            <i class="glyphicon glyphicon-arrow-right" style="font-size:23px;">  <span style="color:black; font-size:25px;font-family:fantasy;" class=" animated zoomInRight">   If you want to contact me my email is @Model.Email</span></i>
+                        </dd>
+                        <br />
+                        @if (Model.Info != null)
+                        {
+                            <dd>
+                                <i class="glyphicon glyphicon-arrow-right" style="font-size:23px;">   <span style="color:black; font-size:25px;font-family:fantasy;" class=" animated zoomInRight">@Model.Info</span></i>
+                            </dd>
+                        }
+                        <dd style="color:black; font-size:25px;">Share more about you!</dd>
+                        <dd>
+                            @using (Html.BeginForm("MoreInfo", "People", FormMethod.Post))
+                            {
+
+                                <textarea name="info" class="form-control"></textarea>
+                                <input type="submit" value="Add More Information" class="btn btn-success" />
+                            }
+                        </dd>
+                        <dd>
+
+
+                        </dd>
+                        <br />
+                        <dd>
+                            @if (User.Identity.Name.Equals(Model.Email) || User.IsInRole("Administrator"))
+                            {
+                                @Html.ActionLink("Edit Basic Informations", "Edit", new { id = Model.id }, new { @class = "text-success btn-success btn" })
+                            }
+                        </dd>
+                        <br />
+                        <dd>
+                            @if (User.IsInRole("Administrator"))
+                            {
+                                @Html.ActionLink("Back to List", "Index", null, new { @class = "text-success" }, new { @class = "btn-success btn" })
+                            }
+
+                        </dd>
+                    </div>
+                </div>
+            </dl>
+        </div>
+
+        <br />
         <hr />
 
-        <dl class="dl-horizontal">
-            <div class="row">
-                <div class="col-lg-4">
-                    <dd>
-                        @if (Model.PicUrl != null)
-                        {
-                            <img class="img-circle" style="width:220px; height:200px;  border:solid; border-color:black" src="~/Content/Images/@Model.PicUrl" />
-                        }
-                        else
-                        {
-                            if (Model.Gender == "Male")
+        <div class="row">
+            <div class="col-lg-5">
+
+                <div class="form-group">
+                    <h2 style="font-family:SimSun; color:#145214; font-size:35px;">Your exercises:</h2>
+                    <ul>
+                        @{
+                            foreach (var e in Model.Exercises)
                             {
-                                <img class="img-circle" style=" width:220px;  height:200px;  border:solid; border-color:black" src="~/Content/Images/male.png" />
-                            }
-                            else if (Model.Gender == "Female")
-                            {
-                                <img class="img-circle" style=" width:220px;  height:200px; border:solid; border-color:black" src="~/Content/Images/female.png" />
+
+                                <li>@Html.ActionLink(e.Name, "Description", "Exercises", new { id = e.id }, new { @style = "color:#145214; font-size:30px; font-family:fantasy;" })</li>
                             }
                         }
-                    </dd>
-                    <br />
-                    <dd>
-                        @using (Html.BeginForm("Details", "People", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {<div>
-                                <h3>Upload Image: </h3>
-                                <input type="file" name="file" value="Browse" class="btn btn-success" />
-                                <br />
-                                <input type="submit" value="Upload" class="btn btn-success" />
-                            </div>
-                        }
+                    </ul>
 
-                    </dd>
                 </div>
-                <div class="col-lg-8">
 
-                    <dd>
+            </div>
+            <div class="col-lg-5">
 
-                        <i class="glyphicon glyphicon-arrow-right" style="font-size:23px;"> <span style="color:black; font-size:25px;font-family:fantasy;"> @Html.DisplayFor(model => model.Years) years old.</span></i>
-                    </dd>
-                    <dd>
-                        <i class="glyphicon glyphicon-arrow-right" style="font-size:23px;">  <span style="color:black; font-size:25px;font-family:fantasy;"> @Html.DisplayFor(model => model.Gender)</span></i>
-                    </dd>
-                    <dd>
-                        <i class="glyphicon glyphicon-arrow-right" style="font-size:23px;">  <span style="color:black; font-size:25px;font-family:fantasy;">   If you want to contact me my email is @Model.Email</span></i>
-                    </dd>
-                    <br />
-                    @if (Model.Info != null)
-                    {
-                        <dd>
-                            <i class="glyphicon glyphicon-arrow-right" style="font-size:23px;">   <span style="color:black; font-size:25px;font-family:fantasy;">@Model.Info</span></i>
-                        </dd>
-                    }
-                    <dd style="color:black; font-size:25px;">Share more about you!</dd>
-                    <dd>
-                        @using (Html.BeginForm("MoreInfo", "People", FormMethod.Post))
-                        {
+                <div class="form-group">
+                    <h2 style="font-family:SimSun; color:#145214; font-size:35px;">Your meals:</h2>
+                    <ul>
+                        @{
+                            foreach (var e in Model.Foods)
+                            {
 
-                            <textarea name="info" class="form-control"></textarea>
-                            <input type="submit" value="Add More Information" class="btn btn-success" />
+                                <li>@Html.ActionLink(e.Name, "Description", "Foods", new { id = e.id }, new { @style = "color:#145214; font-size:30px; font-family:fantasy;" })</li>
+                            }
                         }
-                    </dd>
-                    <dd>
-                       
+                    </ul>
 
-                    </dd>
-                    <br />
-                    <dd>
-                        @if (User.Identity.Name.Equals(Model.Email) || User.IsInRole("Administrator"))
-                        {
-                            @Html.ActionLink("Edit Basic Informations", "Edit", new { id = Model.id }, new { @class = "text-success btn-success btn" })
-                        }
-                    </dd>
-                    <br />
-                    <dd>
-                        @if (User.IsInRole("Administrator"))
-                        {
-                            @Html.ActionLink("Back to List", "Index", null, new { @class = "text-success" }, new { @class = "btn-success btn" })
-                        }
-
-                    </dd>
                 </div>
             </div>
-        </dl>
-    </div>
-
-    <br />
-    <hr />
-
-    <div class="row">
-        <div class="col-lg-5">
-
-            <div class="form-group">
-                <h2 style="font-family:SimSun; color:#145214; font-size:35px;">Your exercises:</h2>
-                <ul>
-                    @{
-                        foreach (var e in Model.Exercises)
-                        {
-
-                            <li>@Html.ActionLink(e.Name, "Description", "Exercises", new { id = e.id }, new { @style = "color:#145214; font-size:30px; font-family:fantasy;" })</li>
-                        }
-                    }
-                </ul>
-
-            </div>
-
-        </div>
-        <div class="col-lg-5">
-
-            <div class="form-group">
-                <h2 style="font-family:SimSun; color:#145214; font-size:35px;">Your meals:</h2>
-                <ul>
-                    @{
-                        foreach (var e in Model.Exercises)
-                        {
-
-                            <li>@Html.ActionLink(e.Name, "Description", "Exercises", new { id = e.id }, new { @style = "color:#145214; font-size:30px; font-family:fantasy;" })</li>
-                        }
-                    }
-                </ul>
-
-            </div>
-        </div>
             <div class="col-lg-2">
-                <input type="button" class="btn btn-success" value="Finish" />
+                @Html.ActionLink("Finish", "Index", "Final", new { @style = "color:#145214; font-family:fantasy;" })
             </div>
 
-        
-    </div>
 
+        </div>
+
+    }
+    else
+    {
+        <div class="text-center" style="margin-top: 15px; margin-bottom:15px;">
+            <img src="~/Images/Logo.jpg" class="text-center img-thumbnail" style="width: 20%; border-radius:50%;" />
+            <br />
+            <br />
+            <br />
+            <h1 style="color:#145214; font-family:fantasy" class="animated bounce infinite">You do not have permissions to view this page</h1>
+        </div>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    }
 
 </body>

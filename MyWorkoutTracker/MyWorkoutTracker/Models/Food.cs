@@ -15,6 +15,7 @@ namespace MyWorkoutTracker.Models
         public string PicUrl { get; set; }
         public List<Food> foods { get; set; }
         public List<Person> people { get; set; }
+        public bool IsSelected { get; set; }
         public Food()
         {
             foods =  new List<Food>();

@@ -1,7 +1,9 @@
 ﻿@model MyWorkoutTracker.Models.Food
 @{
     ViewBag.Title = "Index";
-    
+    var idFood = 0;
+    var isSelected = false;
+
 }
 <br /><br />
 <body style="background: linear-gradient(to bottom, #2e2c2c 10%, #ffffff 100%);">
@@ -10,36 +12,88 @@
         <div class="col-lg-3">
             @foreach (var item in Model.foods)
             {
-
-                <a data-food-id="@item.id" data-kcal="@item.Kcal" data-desc="@item.Description" data-img="@item.PicUrl"  data-food-name="@item.Name" class="list-group-item js-food" href="#">@item.Name</a>
-                
-
+                <a data-food-id="@item.id" data-isSelected="@item.IsSelected" data-kcal="@item.Kcal" data-desc="@item.Description" data-img="@item.PicUrl" data-food-name="@item.Name" class="list-group-item js-food" href="#">@item.Name</a>
             }
-    </div>
-        <div class="col-lg-9">
-            <div id="okk" class="col-9" style="display:none">
+            <br />
+            <br />
+            @using (Html.BeginForm("Food", "Foods"))
+            {
+                <div class="row text-center">
+                    <input type="submit" class="btn btn-success" />
+                </div>
+            }
+        </div>
+        <div class="col-lg-1">
+            <div class="vl"></div>
+        </div>
+        <div class="col-lg-8">
+            <div id="okk" class="col-9" style="display:none; color:white">
+
+                <img class="image img-thumbnail" style="width:100%; height:400px;" />
                 <div>My meal for today is <div id="info"></div></div>
-                <img class="image"/>
+                <br />
+
+                @{
+                    if (isSelected == true)
+                    {
+                        <input  value="Added" type="button" id="Add" class="btn btn-success js-add">
+                    }
+                    else
+                    {
+                        <input onclick="change(this)" value="Add" type="button" id="Add" class="btn btn-success js-add">
+                    }
+                }
             </div>
         </div>
     </div>
+
 </body>
 
 @section scripts{
-
+    <style>
+        .vl {
+            border-left: 2px solid green;
+            height: 800px;
+        }
+    </style>
     <script type="text/javascript">
         $(document).ready(function () {
             $(".js-food").click(function () {
                 var name = $(this).data('food-name')
-                var id = $(this).data('food-id')
-                var pic =  $(this).data('img');
+                idFood = $(this).data('food-id')
+                isSelected = $(this).data('isSelected')
+                var pic = $(this).data('img');
                 var kcal = $(this).data('kcal')
                 var desc = $(this).data('desc')
-                $("#info").text("Name " + name + " id=" + id + " kcal: " + kcal + pic + " " + desc);
-                $(".image").attr('src', '/Content/Images/'+pic);
+                $("#info").text("Name " + name + " id=" + idFood + " kcal: " + kcal + pic + " " + desc);
+                $(".image").attr('src', '/Content/Images/' + pic);
                 $("#okk").show();
+
             });
         });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".js-add").click(function () {
+                var button = $(this);
+                $.ajax({
+                    url: "/Foods/Add/" + idFood,
+                    method: "GET",
+                    success: function () {
+
+                    }
+                });
+
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        function change(selected) {
+            selected.value = (selected.value == ('Add') || ('Added')) ? ('Added') : ('Add')
+            $(selected).fadeTo('fast', 0.2);
+            $(selected).attr('disabled', true);
+
+        }
     </script>
 
 }

@@ -21,6 +21,33 @@ namespace MyWorkoutTracker.Controllers
             }
             return View(model);
         }
-       
+
+        public ActionResult Add(int? id)
+        {
+            int idd = (int)Session["ID"];
+            Person person = db.People.Find(idd);
+            Food food = db.Foods.Find(id);
+            food.IsSelected = true;
+            db.SaveChanges();
+            person.Foods.Add(food);
+            db.SaveChanges();
+            food.IsSelected = false;
+            db.SaveChanges();
+            return RedirectToAction("Foods", "Index");
+        }
+        [HttpPost]
+        public ActionResult Food()
+        {
+            int id = (int)Session["ID"];
+            Person person = db.People.Find(id);
+            return RedirectToAction("Details/" + id, "People");
+        }
+
+        public ActionResult Description(int? id)
+        {
+            Food model = db.Foods.Find(id);
+
+            return View(model);
+        }
     }
 }

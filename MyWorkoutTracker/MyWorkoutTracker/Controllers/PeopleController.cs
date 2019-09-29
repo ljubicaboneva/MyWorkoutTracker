@@ -25,15 +25,11 @@ namespace MyWorkoutTracker.Controllers
 
             return View(db.People.ToList());
         }
-       
-           
-           
-       
 
         [HttpPost]
         public ActionResult MoreInfo()
         {
-            int id = (int)Session["id"];
+            int id = (int)Session["ID"];
             Person person = db.People.Find(id);
             string info = Request["info"];
             if (info != null)
@@ -56,10 +52,7 @@ namespace MyWorkoutTracker.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Person person = db.People.Find(id);
-            Session["id"] = id;
-            
-            
-            if (person == null)
+             if (person == null)
             {
                 return HttpNotFound();
             }
@@ -70,7 +63,7 @@ namespace MyWorkoutTracker.Controllers
         [HttpPost]
         public ActionResult Details(HttpPostedFileBase file)
         {
-            int idPerson = (int)Session["id"];
+            int idPerson = (int)Session["ID"];
             Person person = db.People.Find(idPerson);
             
             var path = "";
@@ -164,22 +157,6 @@ namespace MyWorkoutTracker.Controllers
             return View(person);
         }
  
-        //[HttpPost]
-        //public ActionResult AddImage()
-        //{
-        //    var upload = Request["ImageUpload"];
-        //    int idPerson = (int)Session["id"];
-        //    Person person = db.People.Find(idPerson);
-        //    //string fileName = Path.GetFileNameWithoutExtension(person.ImageUpload.FileName);
-        //        //string extension = Path.GetExtension(person.ImageUpload.FileName);
-        //        string fileName = upload;
-        //        person.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/Images"), fileName));
-        //        person.PicUrl = fileName;
-        //        db.SaveChanges();
-        //    return RedirectToAction("Index");
-
-        //}
-
         [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
         {

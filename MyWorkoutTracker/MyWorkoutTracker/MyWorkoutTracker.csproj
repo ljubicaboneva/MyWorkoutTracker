@@ -333,6 +333,14 @@
     <Compile Include="Migrations\201909271607257_updates1.Designer.cs">
       <DependentUpon>201909271607257_updates1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909281754559_burnedKcal.cs" />
+    <Compile Include="Migrations\201909281754559_burnedKcal.Designer.cs">
+      <DependentUpon>201909281754559_burnedKcal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909281758047_isSelected.cs" />
+    <Compile Include="Migrations\201909281758047_isSelected.Designer.cs">
+      <DependentUpon>201909281758047_isSelected.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddUserToRole.cs" />
@@ -345,6 +353,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animate.css" />
+    <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -654,6 +664,7 @@
     <Content Include="Views\Exercises\Description.cshtml" />
     <Content Include="Views\Final\Index.cshtml" />
     <Content Include="Views\Foods\Index.cshtml" />
+    <Content Include="Views\Foods\Description.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -788,6 +799,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909271607257_updates1.resx">
       <DependentUpon>201909271607257_updates1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909281754559_burnedKcal.resx">
+      <DependentUpon>201909281754559_burnedKcal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909281758047_isSelected.resx">
+      <DependentUpon>201909281758047_isSelected.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

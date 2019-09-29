@@ -27,15 +27,19 @@
                 <ul class="nav navbar-nav">
                     @if (User.IsInRole("Administrator"))
                     {
-                    <li> <a href="~/People/Index"><i font-size:20px;" class="glyphicon glyphicon-user"></i> Users</a></li>
+                        <li> <a href="~/People/Index"><i font-size:20px;" class="glyphicon glyphicon-user"></i> Users</a></li>
                         <li><a href="~/Account/AddUserToRole"><i font-size:20px;" class="glyphicon glyphicon-check"></i> Add User To Role</a></li>
                     }
-                        <li><a href="~/Home/About"><i font-size:20px;" class="glyphicon glyphicon-info-sign"></i> About</a></li>
-                        <li><a href="~/Home/Contact"><i font-size:20px;" class="glyphicon glyphicon-phone-alt"></i> Contact</a></li>
-                    @if (User.IsInRole("User")|| User.IsInRole("Administrator")) {
-                        <li><a href="~/Exercises/Index"><i font-size:20px;" class="glyphicon glyphicon-list"></i>Add Exercises</a></li>
+                    @if (User.IsInRole("User") || User.IsInRole("Administrator"))
+                    {
+                        <li><a href="~/Exercises/Index"><i font-size:20px;" class="glyphicon glyphicon-tasks"></i> Add Exercises</a></li>
+                        <li><a href="~/Foods/Index"><i font-size:20px;" class="glyphicon glyphicon-cutlery"></i> Add Meals</a></li>
                     }
-                    </ul>
+                    <li><a href="~/Home/About"><i font-size:20px;" class="glyphicon glyphicon-info-sign"></i> About</a></li>
+                    <li><a href="~/Home/Contact"><i font-size:20px;" class="glyphicon glyphicon-phone-alt"></i> Contact</a></li>
+
+
+                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -51,6 +55,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

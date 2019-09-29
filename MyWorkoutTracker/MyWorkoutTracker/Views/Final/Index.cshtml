@@ -1,48 +1,118 @@
 ﻿@model  MyWorkoutTracker.Models.Person
 @{
     ViewBag.Title = "Index";
+    int i = 0;
 }
 <body style="background: linear-gradient(to bottom, #2e2c2c 10%, #ffffff 100%);color:black">
     <div class="text-center" style="margin-top: 15px; margin-bottom:15px;">
         <img src="~/Images/Logo.jpg" class="text-center img-thumbnail" style="width: 20%; border-radius:50%;" />
     </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-6">
+            <table class="table" id="tabela" style="color:#145214">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Exercises)
+                        </th>
+                        <th>
+                            Enter how many times you did the exercise
+                        </th>
+                        <th>
+                            Burned calories per one of the exercise
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Exercises)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                <input onblur="findTotal()" name="qty" type="number" min="0" id="@item.burnedKcal" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.burnedKcal)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <div class="col-lg-6">
+            <table class="table" id="tabela" style="color:#145214">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Foods)
+                        </th>
+                        <th>
+                            Enter number of portions you ate
+                        </th>
+                        <th>
+                            Calories per portion
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Foods)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                <input onblur="findTotalCalorieIntake()" name="food" disabled type="number" min="0" id="@item.Kcal" />
 
-    <table class="table" id="tabela">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Exercises)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Foods)
-                </th>
-               
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Kcal)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-                
-            </tr>
-        </thead>
-        <tbody>
+    <div class="row">
+        <div class="col-lg-6" style="color:#145214">
+            Total burned calories:<input type="text" name="total" id="total" />
+        </div>
+        <div class="col-lg-6" style="color:#145214">
+            Total intake of calories:<input type="text" name="totalIntake" id="totalIntake" />
+        </div>
+    </div>
 
-            @foreach (var item in Model.Exercises)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-
-
-                    <td>
-                      
-                        <button class="btn-link js-delete" data-people-id="@item.id" style="color:#145214;">Delete</button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
     <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-
 </body>
+<script type="text/javascript">
+    document.getElementById('total').readOnly = true;
+    document.getElementById('totalIntake').readOnly = true;
+    function findTotal() {
+        var arr = document.getElementsByName('qty');
+        var tot = 0;
+        for (var i = 0; i < arr.length; i++) {
+            if (parseInt(arr[i].value))
+                tot += parseInt(arr[i].value) * parseInt(arr[i].id);
+        }
+        document.getElementById('total').value = tot;
+    }
+</script>
 
+<script type="text/javascript">
+    function findTotalCalorieIntake() {
+
+        var arr = document.getElementsByName('food');
+        var tot = 0;
+        for (var i = 0; i < arr.length; i++) {
+            if (parseInt(arr[i].value))
+                tot += parseInt(arr[i].value) * parseInt(arr[i].id);
+        }
+        document.getElementById('totalIntake').value = tot;
+    }
+</script>

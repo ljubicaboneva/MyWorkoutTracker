@@ -186,28 +186,7 @@ namespace MyWorkoutTracker.Controllers
             }
         }
 
-        //public string GetCurrentUser(string email)
-        //{
-        //    Person currentUser = Session["CurrentUser"] as Person;
-
-
-        //    while (true)
-        //    {
-        //        if(email == User.Identity.GetUserName())
-        //        {
-        //            if (currentUser == null)
-        //            {
-        //                var user = UserManager.FindByEmailAsync(email);
-        //                ApplicationDbContext db = new ApplicationDbContext();
-        //                currentUser = db.People.Find(user.Id);
-        //                Session["CurrentUser"] = currentUser;
-        //                break;
-        //            }
-        //        }
-        //    }
-
-        //    return "First Name:" + currentUser.FirstName + "<br/>" + "Last Name:" + currentUser.LastName;
-        //}
+       
 
 
         //
