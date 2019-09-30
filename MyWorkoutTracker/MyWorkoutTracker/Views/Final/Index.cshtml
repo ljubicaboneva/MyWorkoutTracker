@@ -51,10 +51,10 @@
                             @Html.DisplayNameFor(model => model.Foods)
                         </th>
                         <th>
-                            Enter number of portions you ate
+                            Enter quantity in grams
                         </th>
                         <th>
-                            Calories per portion
+                            Calories per gram
                         </th>
                     </tr>
                 </thead>
@@ -66,7 +66,7 @@
                                 @Html.DisplayFor(modelItem => item.Name)
                             </td>
                             <td>
-                                <input onblur="findTotalCalorieIntake()" name="food" disabled type="number" min="0" id="@item.Kcal" />
+                                <input onblur="findTotalCalorieIntake()" name="food" type="number" min="0" id="@item.Kcal" />
 
                             </td>
                             <td>
@@ -98,7 +98,7 @@
         var tot = 0;
         for (var i = 0; i < arr.length; i++) {
             if (parseInt(arr[i].value))
-                tot += parseInt(arr[i].value) * parseInt(arr[i].id);
+                tot += parseFloat(arr[i].value) * parseFloat(arr[i].id);
         }
         document.getElementById('total').value = tot;
     }
@@ -111,7 +111,7 @@
         var tot = 0;
         for (var i = 0; i < arr.length; i++) {
             if (parseInt(arr[i].value))
-                tot += parseInt(arr[i].value) * parseInt(arr[i].id);
+                tot += parseFloat(arr[i].value) * parseFloat(arr[i].id);
         }
         document.getElementById('totalIntake').value = tot;
     }

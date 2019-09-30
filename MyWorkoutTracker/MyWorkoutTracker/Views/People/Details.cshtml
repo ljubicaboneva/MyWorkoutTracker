@@ -37,17 +37,20 @@
                             }
                         </dd>
                         <br />
-                        <dd>
-                            @using (Html.BeginForm("Details", "People", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                            {<div>
-                                    <h3>Upload Image: </h3>
-                                    <input type="file" name="file" value="Browse" class="btn btn-success" />
-                                    <br />
-                                    <input type="submit" value="Upload" class="btn btn-success" />
-                                </div>
-                            }
+                        @if (User.Identity.Name.Equals(Model.Email))
+                        {
+                            <dd>
+                                @using (Html.BeginForm("Picture", "People", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {<div>
+                                        <h3>Upload Image: </h3>
+                                        <input type="file" name="file" value="Browse" class="btn btn-success" />
+                                        <br />
+                                        <input type="submit" value="Upload" class="btn btn-success" />
+                                    </div>
+                                }
 
-                        </dd>
+                            </dd>
+                        }
                     </div>
                     <div class="col-lg-8">
 
@@ -68,7 +71,9 @@
                                 <i class="glyphicon glyphicon-arrow-right" style="font-size:23px;">   <span style="color:black; font-size:25px;font-family:fantasy;" class=" animated zoomInRight">@Model.Info</span></i>
                             </dd>
                         }
-                        <dd style="color:black; font-size:25px;">Share more about you!</dd>
+                        @if (User.Identity.Name.Equals(Model.Email))
+                        {
+                            <dd style="color:black; font-size:25px;">Share more about you!</dd>
                         <dd>
                             @using (Html.BeginForm("MoreInfo", "People", FormMethod.Post))
                             {
@@ -77,13 +82,10 @@
                                 <input type="submit" value="Add More Information" class="btn btn-success" />
                             }
                         </dd>
-                        <dd>
-
-
-                        </dd>
+                        }
                         <br />
                         <dd>
-                            @if (User.Identity.Name.Equals(Model.Email) || User.IsInRole("Administrator"))
+                            @if (User.Identity.Name.Equals(Model.Email))
                             {
                                 @Html.ActionLink("Edit Basic Informations", "Edit", new { id = Model.id }, new { @class = "text-success btn-success btn" })
                             }
@@ -138,11 +140,13 @@
 
                 </div>
             </div>
-            <div class="col-lg-2">
-                @Html.ActionLink("Finish", "Index", "Final", new { @style = "color:#145214; font-family:fantasy;" })
-            </div>
+            @if (User.Identity.Name.Equals(Model.Email))
+            {
+        <div class="col-lg-2">
+            <a href="/Final/Index/" class="btn btn-success">Finish</a>
+        </div>
 
-
+            }
         </div>
 
     }

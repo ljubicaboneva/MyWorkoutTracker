@@ -9,42 +9,44 @@
 <body style="background: linear-gradient(to bottom, #2e2c2c 10%, #ffffff 100%);">
 
     <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-4">
+
             @foreach (var item in Model.foods)
             {
-                <a data-food-id="@item.id" data-isSelected="@item.IsSelected" data-kcal="@item.Kcal" data-desc="@item.Description" data-img="@item.PicUrl" data-food-name="@item.Name" class="list-group-item js-food" href="#">@item.Name</a>
-            }
-            <br />
-            <br />
-            @using (Html.BeginForm("Food", "Foods"))
-            {
+            <div class="row">
+                <div class="col-lg-6">
+                    <a data-food-id="@item.id" data-kcal="@item.Kcal" data-desc="@item.Description" data-img="@item.PicUrl" data-food-name="@item.Name" class="list-group-item js-food" href="#">@item.Name</a>
+                </div>
+                <div class="col-lg-6">
+                    <input onclick="change(this)" data-food-id="@item.id" value="Add" type="button" id="Add" class="btn btn-success js-add">
+                </div>
+            </div>
+                    }
+               
+                <br />
+                <br />
+                @using (Html.BeginForm("Food", "Foods"))
+                {
                 <div class="row text-center">
                     <input type="submit" class="btn btn-success" />
+                    @Html.ActionLink("Create", "Create", "Foods", new { @class = "btn btn-success" })
                 </div>
-            }
-        </div>
+                }
+            </div>
         <div class="col-lg-1">
             <div class="vl"></div>
         </div>
-        <div class="col-lg-8">
+        <div class="col-lg-7">
             <div id="okk" class="col-9" style="display:none; color:white">
 
-                <img class="image img-thumbnail" style="width:100%; height:400px;" />
+                <img class="image img-thumbnail" style="width:70%; height:320px;" />
                 <div>My meal for today is <div id="info"></div></div>
                 <br />
 
-                @{
-                    if (isSelected == true)
-                    {
-                        <input  value="Added" type="button" id="Add" class="btn btn-success js-add">
-                    }
-                    else
-                    {
-                        <input onclick="change(this)" value="Add" type="button" id="Add" class="btn btn-success js-add">
-                    }
-                }
             </div>
+
         </div>
+       
     </div>
 
 </body>
@@ -53,7 +55,7 @@
     <style>
         .vl {
             border-left: 2px solid green;
-            height: 800px;
+            height: 900px;
         }
     </style>
     <script type="text/javascript">
@@ -61,12 +63,11 @@
             $(".js-food").click(function () {
                 var name = $(this).data('food-name')
                 idFood = $(this).data('food-id')
-                isSelected = $(this).data('isSelected')
                 var pic = $(this).data('img');
                 var kcal = $(this).data('kcal')
                 var desc = $(this).data('desc')
                 $("#info").text("Name " + name + " id=" + idFood + " kcal: " + kcal + pic + " " + desc);
-                $(".image").attr('src', '/Content/Images/' + pic);
+                $(".image").attr('src', '/Images/Food/' + pic);
                 $("#okk").show();
 
             });
@@ -75,13 +76,12 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $(".js-add").click(function () {
-                var button = $(this);
+                idFood = $(this).data('food-id')
                 $.ajax({
                     url: "/Foods/Add/" + idFood,
                     method: "GET",
                     success: function () {
-
-                    }
+                     }
                 });
 
             });
@@ -89,7 +89,7 @@
     </script>
     <script type="text/javascript">
         function change(selected) {
-            selected.value = (selected.value == ('Add') || ('Added')) ? ('Added') : ('Add')
+            selected.value = (selected.value == ('Add')) ? ('Added') : ('Add')
             $(selected).fadeTo('fast', 0.2);
             $(selected).attr('disabled', true);
 

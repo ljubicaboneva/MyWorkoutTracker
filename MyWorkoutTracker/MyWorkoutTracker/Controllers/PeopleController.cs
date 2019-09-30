@@ -36,10 +36,7 @@ namespace MyWorkoutTracker.Controllers
             {
                 person.Info = info;
                 db.SaveChanges();
-
             }
-            
-            
             return RedirectToAction("Details/" + person.id, "People");
         }
 
@@ -61,7 +58,7 @@ namespace MyWorkoutTracker.Controllers
 
 
         [HttpPost]
-        public ActionResult Details(HttpPostedFileBase file)
+        public ActionResult Picture(HttpPostedFileBase file)
         {
             int idPerson = (int)Session["ID"];
             Person person = db.People.Find(idPerson);
@@ -86,7 +83,7 @@ namespace MyWorkoutTracker.Controllers
                 }
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Foods");
         }
         // GET: People/Create
         [Authorize(Roles = "Other")]
