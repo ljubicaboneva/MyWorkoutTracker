@@ -37,6 +37,7 @@ namespace MyWorkoutTracker.Controllers
         {
             int id = (int)Session["ID"];
             Person person = db.People.Find(id);
+            Session["ID"] = person.id;
             return RedirectToAction("Details/" + id, "People");
         }
 
@@ -47,5 +48,6 @@ namespace MyWorkoutTracker.Controllers
 
             return View(model);
         }
+
     }
 }

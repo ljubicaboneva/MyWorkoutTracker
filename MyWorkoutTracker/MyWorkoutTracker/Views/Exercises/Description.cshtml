@@ -8,13 +8,20 @@
     <hr />
     <div class="row">
         <div class="col-lg-6">
-            <img src="~/Images/Exercises/@Model.PicUrl" style="width:90%; height:320px;" class="img-thumbnail" />
+            <img src="~/Images/Exercises/@Model.PicUrl" style="width:90%; height:320px;" class="img-thumbnail animated bounce" />
         </div>
         <div class="col-lg-6">
-            <div class="form-control" style="background-color:dimgrey; color:white;height:100%">@Model.Description</div>
-            @Html.ActionLink("Back to my profile", "Details", "People", new { id = Session["ID"] }, new { @style = "color:#145214;" })
+            <div style="color:#145214; font-family:fantasy; font-size:30px">How to do it: </div>    <div class="form-control" style="background-color:dimgrey; font-size:20px; color:white;height:100%">@Model.Description</div>
+            
         </div>
     </div>
-  
-
+    <br />
+    <div class="row">
+        <div class="col-lg-6"></div>
+        <div class="col-lg-6">
+            @Html.ActionLink("Back to my profile", "Details", "People", new { id = Session["ID"] }, new { @class = "btn btn-success" })
+        </div>
+    </div>
+   
+    <br /><br /><br />
 </body>

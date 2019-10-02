@@ -1,0 +1,42 @@
+﻿@model MyWorkoutTracker.Models.Food
+
+@{
+    ViewBag.Title = "Picture";
+}
+<body style="background: linear-gradient(to bottom, #2e2c2c 10%, #ffffff 100%);">
+    <h2 class="text-success">Create your own meal!</h2>
+
+
+    <div class="form-horizontal">
+        <h4 style="color:white">Add picture to your meal.</h4>
+        <hr />
+        <div class="row">
+            <div class="col-lg-6">
+                @using (Html.BeginForm("Image", "Foods", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {<div>
+                        <h3>Upload Image: </h3>
+                        <input type="file" name="file" value="Browse" class="btn btn-success" />
+                        <br />
+                        <input type="submit" value="Upload" class="btn btn-success" />
+                    </div>
+                }
+            </div>
+
+            <div class="col-lg-6">
+                <div style="margin-top: 15px; margin-bottom:15px;">
+                    <img src="~/Images/Logo.jpg" class="text-center img-thumbnail" style="width: 50%; border-radius:50%;" />
+                </div>
+                <div style="font-size:40px; font-family:SimSun" class="text-success">
+                    JOIN OUR TEAM
+                </div>
+            </div>
+        </div>
+
+
+
+        </div>
+    
+
+    <br /><br /><br /><br />
+
+</body>

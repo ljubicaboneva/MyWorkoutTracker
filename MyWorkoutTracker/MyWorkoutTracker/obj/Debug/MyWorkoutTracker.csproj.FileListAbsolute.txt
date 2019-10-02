@@ -267,3 +267,4 @@ C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTrack
 C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.Migrations.foodimages.resources
 C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.Migrations.change.resources
 C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.Migrations.time.resources
+C:\Users\user\Desktop\MyWorkoutTracker\MyWorkoutTracker\obj\Debug\MyWorkoutTracker.Migrations.weight.resources

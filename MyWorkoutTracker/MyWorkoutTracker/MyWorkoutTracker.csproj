@@ -353,6 +353,10 @@
     <Compile Include="Migrations\201909302345502_time.Designer.cs">
       <DependentUpon>201909302345502_time.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910021048107_weight.cs" />
+    <Compile Include="Migrations\201910021048107_weight.Designer.cs">
+      <DependentUpon>201910021048107_weight.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddUserToRole.cs" />
@@ -534,6 +538,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\about.jpg" />
     <Content Include="Images\Exercises\Arnold press.png" />
     <Content Include="Images\Exercises\Bench press.jpg" />
     <Content Include="Images\Exercises\donkey.png" />
@@ -551,22 +556,16 @@
     <Content Include="Images\Exercises\sumo.jpg" />
     <Content Include="Images\Exercises\Tricep pushdowns.png" />
     <Content Include="Images\Exercises\WalkingLunge.jpg" />
+    <Content Include="Images\fit.jpg" />
     <Content Include="Images\Food\apetisani.jpg" />
-    <Content Include="Images\Food\apple.jpg" />
     <Content Include="Images\Food\avocado.jpg" />
     <Content Include="Images\Food\banana.jpg" />
     <Content Include="Images\Food\chicken.jpg" />
-    <Content Include="Images\Food\chicken1.jpg" />
     <Content Include="Images\Food\eggs.jpg" />
     <Content Include="Images\Food\green.jpg" />
     <Content Include="Images\Logo.jpg" />
     <Content Include="Images\Food\mashed.jpg" />
-    <Content Include="Images\Food\morkov.jpg" />
-    <Content Include="Images\Food\mus.jpg" />
     <Content Include="Images\Food\oat.jpg" />
-    <Content Include="Images\Food\olive.jpg" />
-    <Content Include="Images\Food\onions.jpg" />
-    <Content Include="Images\Food\orange.jpg" />
     <Content Include="Images\Food\pasta.jpg" />
     <Content Include="Images\picture1.jpg" />
     <Content Include="Images\picture2.jpg" />
@@ -574,8 +573,6 @@
     <Content Include="Images\Food\pork.jpg" />
     <Content Include="Images\Food\rice1.jpg" />
     <Content Include="Images\Food\roasted.jpg" />
-    <Content Include="Images\Food\shrimp1.jpg" />
-    <Content Include="Images\Food\tomato1.jpg" />
     <Content Include="Images\Food\tuna.jpg" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
@@ -717,6 +714,7 @@
     <Content Include="Views\Foods\Index.cshtml" />
     <Content Include="Views\Foods\Description.cshtml" />
     <Content Include="Views\Foods\Create.cshtml" />
+    <Content Include="Views\Foods\Picture.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -866,6 +864,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909302345502_time.resx">
       <DependentUpon>201909302345502_time.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910021048107_weight.resx">
+      <DependentUpon>201910021048107_weight.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

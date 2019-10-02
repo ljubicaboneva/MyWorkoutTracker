@@ -62,7 +62,10 @@
                             <i class="glyphicon glyphicon-arrow-right" style="font-size:23px;">  <span style="color:black; font-size:25px;font-family:fantasy;" class=" animated zoomInRight"> @Html.DisplayFor(model => model.Gender)</span></i>
                         </dd>
                         <dd>
-                            <i class="glyphicon glyphicon-arrow-right" style="font-size:23px;">  <span style="color:black; font-size:25px;font-family:fantasy;" class=" animated zoomInRight">   If you want to contact me my email is @Model.Email</span></i>
+                            <i class="glyphicon glyphicon-arrow-right" style="font-size:23px;">  <span style="color:black; font-size:25px;font-family:fantasy;" class=" animated zoomInRight">   If you want to contact me my email is @Model.Email.</span></i>
+                        </dd>
+                        <dd>
+                            <i class="glyphicon glyphicon-arrow-right" style="font-size:23px;">  <span style="color:black; font-size:25px;font-family:fantasy;" class=" animated zoomInRight"> @Html.DisplayFor(model => model.Weight) kg.</span></i>
                         </dd>
                         <br />
                         @if (Model.Info != null)
@@ -74,14 +77,14 @@
                         @if (User.Identity.Name.Equals(Model.Email))
                         {
                             <dd style="color:black; font-size:25px;">Share more about you!</dd>
-                        <dd>
-                            @using (Html.BeginForm("MoreInfo", "People", FormMethod.Post))
-                            {
+                            <dd>
+                                @using (Html.BeginForm("MoreInfo", "People", FormMethod.Post))
+                                {
 
-                                <textarea name="info" class="form-control"></textarea>
-                                <input type="submit" value="Add More Information" class="btn btn-success" />
-                            }
-                        </dd>
+                                    <textarea name="info" class="form-control"></textarea>
+                                    <input type="submit" value="Add More Information" class="btn btn-success" />
+                                }
+                            </dd>
                         }
                         <br />
                         <dd>

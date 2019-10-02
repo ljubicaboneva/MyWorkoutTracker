@@ -16,12 +16,6 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Exercises)
                         </th>
-                        <th>
-                            Enter how many times you did the exercise
-                        </th>
-                        <th>
-                            Burned calories per one of the exercise
-                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,18 +25,12 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Name)
                             </td>
-                            <td>
-                                <input onblur="findTotal()" name="qty" type="number" min="0" id="@item.burnedKcal" />
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.burnedKcal)
-                            </td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
-        <br />
+
         <div class="col-lg-6">
             <table class="table" id="tabela" style="color:#145214">
                 <thead>
@@ -81,38 +69,59 @@
 
     <div class="row">
         <div class="col-lg-6" style="color:#145214">
-            Total burned calories:<input type="text" name="total" id="total" />
+
+            Enter how much time you spent doint the whole exercise: <input onblur="findTotal()" id="time" name="time" type="number" min="0" class="form-control" />
+            <br />
+            Select the intensity of the workout:
+           
+            <select class="intensity form-control" id="WorkoutIntesity" name="WorkoutIntesity" onblur="findTotal()">
+                <option>Select Intesity</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select>
+            <br />
+            Total burned calories:<input type="text" name="total" id="total" class="form-control" />
         </div>
         <div class="col-lg-6" style="color:#145214">
-            Total intake of calories:<input type="text" name="totalIntake" id="totalIntake" />
+            Total intake of calories:<input type="text" name="totalIntake" id="totalIntake" class="form-control" />
+            <br />
+            @Html.ActionLink("Clear Lists", "Delete", "Final", new { @class = "btn btn-success" })
         </div>
     </div>
+    
 
     <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 </body>
 <script type="text/javascript">
     document.getElementById('total').readOnly = true;
     document.getElementById('totalIntake').readOnly = true;
+
+    
     function findTotal() {
-        var arr = document.getElementsByName('qty');
-        var tot = 0;
-        for (var i = 0; i < arr.length; i++) {
-            if (parseInt(arr[i].value))
-                tot += parseFloat(arr[i].value) * parseFloat(arr[i].id);
+        var finish = null;
+        var intensity = $('#WorkoutIntesity').find(":selected").text();
+        var TotalTime = document.getElementById('time').value;
+        if (intensity == "Low") {
+            finish = parseFloat(400 / 60) * parseFloat(TotalTime);
+        } else if (intensity == "Medium") {
+            finish = parseFloat(600 / 60) * parseFloat(TotalTime);
+        } else {
+            finish = parseFloat(800 / 60) * parseFloat(TotalTime);
         }
-        document.getElementById('total').value = tot;
+        document.getElementById('total').value = finish;
     }
 </script>
 
 <script type="text/javascript">
     function findTotalCalorieIntake() {
 
-        var arr = document.getElementsByName('food');
-        var tot = 0;
-        for (var i = 0; i < arr.length; i++) {
-            if (parseInt(arr[i].value))
-                tot += parseFloat(arr[i].value) * parseFloat(arr[i].id);
-        }
-        document.getElementById('totalIntake').value = tot;
-    }
+                var arr = document.getElementsByName('food');
+                var tot = 0;
+                for (var i = 0; i < arr.length; i++) {
+                    if (parseInt(arr[i].value))
+                        tot += parseFloat(arr[i].value) * parseFloat(arr[i].id);
+                }
+                document.getElementById('totalIntake').value = tot;
+            }
 </script>

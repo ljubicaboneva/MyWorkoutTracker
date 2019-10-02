@@ -4,14 +4,14 @@
     ViewBag.Title = "Create";
 }
 <body style="background: linear-gradient(to bottom, #2e2c2c 10%, #ffffff 100%);">
-    <h2 class="text-success">Tell us more about you!</h2>
+    <h2 class="text-success">Create your own meal!</h2>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4 style="color:white">Only the administrator can see your personal informations.</h4>
+            <h4 style="color:white">This meal will be added to everyones list of meals to choose.</h4>
             <hr />
             <div class="row">
                 <div class="col-lg-6">
@@ -41,26 +41,14 @@
                             @Html.ValidationMessageFor(model => model.Kcal, "", new { @class = "text-danger" })
                         </div>
                     </div>
+                  
 
-                    
-                    <dic class="form-control">
-                        @using (Html.BeginForm("Picture", "Foods", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {<div>
-                                <h3>Upload Image: </h3>
-                                <input type="file" name="file" value="Browse" class="btn btn-success" />
-                                <br />
-                                
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-default btn-success" />
                             </div>
-                        }
-
-                    </dic>
-                    }
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Create" class="btn btn-default btn-success" />
                         </div>
-                    </div>
-
+                    
                 </div>
 
                 <div class="col-lg-6">

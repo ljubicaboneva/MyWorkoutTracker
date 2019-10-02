@@ -7,7 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace MyWorkoutTracker.Controllers
-{
+
+{   [Authorize(Roles ="User,Administrator")]
     public class FoodsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -22,12 +23,16 @@ namespace MyWorkoutTracker.Controllers
             }
             return View(model);
         }
+        public ActionResult Picture()
+        {
+            return View();
+        }
 
         [HttpPost]
-        public ActionResult Picture(HttpPostedFileBase file)
+        public ActionResult Image(HttpPostedFileBase file)
         {
-            int idPerson = (int)Session["ID"];
-            Person person = db.People.Find(idPerson);
+            int idFood = (int)Session["idFood"];
+            Food food = db.Foods.Find(idFood);
 
             var path = "";
             if (file != null)
@@ -42,14 +47,13 @@ namespace MyWorkoutTracker.Controllers
                     {
                         path = Path.Combine(Server.MapPath("~/Images/Food"), file.FileName);
                         file.SaveAs(path);
-                        ViewBag.UploadSuccess = true;
-                        person.PicUrl = file.FileName;
+                        food.PicUrl = file.FileName;
                         db.SaveChanges();
                     }
                 }
             }
             
-            return RedirectToAction("Details/" + idPerson, "People");
+            return RedirectToAction("Index", "Foods");
         }
 
         public ActionResult Add(int? id)
@@ -58,6 +62,7 @@ namespace MyWorkoutTracker.Controllers
             Person person = db.People.Find(idd);
             Food food = db.Foods.Find(id);
             person.Foods.Add(food);
+            
             db.SaveChanges();
            
             return RedirectToAction("Foods", "Index");
@@ -67,13 +72,14 @@ namespace MyWorkoutTracker.Controllers
         {
             int id = (int)Session["ID"];
             Person person = db.People.Find(id);
+            Session["ID"] = person.id;
             return RedirectToAction("Details/" + id, "People");
         }
 
         public ActionResult Description(int? id)
         {
             Food model = db.Foods.Find(id);
-
+            Session["idFood"] = model.id;
             return View(model);
         }
 
@@ -88,18 +94,22 @@ namespace MyWorkoutTracker.Controllers
         [HttpPost]
         [Authorize(Roles = "User,Administrator")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Name,Description,Kcal,PicUrl")] Food food)
+        public ActionResult Create([Bind(Include = "id,Name,Description,Kcal")] Food food)
         {
 
             if (ModelState.IsValid)
             {
                 db.Foods.Add(food);
+               
                 db.SaveChanges();
-                return RedirectToAction("Index", "Foods");
+                Session["idFood"] = food.id;
+                return RedirectToAction("Picture", "Foods");
             }
 
             return View(food);
         }
+        
+      
 
     }
 }

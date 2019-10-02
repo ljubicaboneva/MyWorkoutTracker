@@ -49,7 +49,8 @@ namespace MyWorkoutTracker.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Person person = db.People.Find(id);
-             if (person == null)
+           
+            if (person == null)
             {
                 return HttpNotFound();
             }
@@ -76,14 +77,13 @@ namespace MyWorkoutTracker.Controllers
                     {
                         path = Path.Combine(Server.MapPath("~/Content/Images"), file.FileName);
                         file.SaveAs(path);
-                        ViewBag.UploadSuccess = true;
                         person.PicUrl = file.FileName;
                         db.SaveChanges();
                     }
                 }
             }
 
-            return RedirectToAction("Index", "Foods");
+            return RedirectToAction("Details/" + person.id, "People");
         }
         // GET: People/Create
         [Authorize(Roles = "Other")]
@@ -98,7 +98,7 @@ namespace MyWorkoutTracker.Controllers
         [HttpPost]
         [Authorize(Roles = "Other")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,FirstName,LastName,Years,Gender,Email,Role,Info,PicUrl")] Person person)
+        public ActionResult Create([Bind(Include = "id,FirstName,LastName,Years,Gender,Email,Role,Info,PicUrl,Weight")] Person person)
         {
             
             if (ModelState.IsValid)
@@ -141,7 +141,7 @@ namespace MyWorkoutTracker.Controllers
         [HttpPost]
         [Authorize(Roles = "Administrator,User,Other")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,FirstName,LastName,Years,Gender,Email,Role,Info,PicUrl")] Person person)
+        public ActionResult Edit([Bind(Include = "id,FirstName,LastName,Years,Gender,Email,Role,Info,PicUrl,Weight")] Person person)
         {
             
             if (ModelState.IsValid)
@@ -180,33 +180,6 @@ namespace MyWorkoutTracker.Controllers
             return RedirectToAction("Index");
         }
 
-
-
-        //// GET: People/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Person person = db.People.Find(id);
-        //    if (person == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(person);
-        //}
-
-        //// POST: People/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Person person = db.People.Find(id);
-        //    db.People.Remove(person);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
 
         [Authorize(Roles = "Administrator")]
         protected override void Dispose(bool disposing)

@@ -23,7 +23,7 @@ namespace MyWorkoutTracker.Models
         public string Email { get; set; }
         public string Role { get; set; }
         public string Info { get; set; }
-        public int exeId { get; set; }
+        public int Weight { get; set; }
         public string PicUrl { get; set; }
         public virtual ICollection<Exercise> Exercises { get; set; }
         public virtual ICollection<Food> Foods { get; set; }

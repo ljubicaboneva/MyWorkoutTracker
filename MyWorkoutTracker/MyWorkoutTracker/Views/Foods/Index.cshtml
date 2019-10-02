@@ -2,62 +2,62 @@
 @{
     ViewBag.Title = "Index";
     var idFood = 0;
-    var isSelected = false;
+   
+
+
 
 }
 <br /><br />
 <body style="background: linear-gradient(to bottom, #2e2c2c 10%, #ffffff 100%);">
+
 
     <div class="row">
         <div class="col-lg-4">
 
             @foreach (var item in Model.foods)
             {
-            <div class="row">
-                <div class="col-lg-6">
-                    <a data-food-id="@item.id" data-kcal="@item.Kcal" data-desc="@item.Description" data-img="@item.PicUrl" data-food-name="@item.Name" class="list-group-item js-food" href="#">@item.Name</a>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <a data-food-id="@item.id" data-kcal="@item.Kcal" data-desc="@item.Description" data-img="@item.PicUrl" data-food-name="@item.Name" class="list-group-item js-food" href="#">@item.Name</a>
+                    </div>
+                    <div class="col-lg-6">
+                        <input onclick="change(this)" data-food-id="@item.id" value="Add" type="button" id="Add" class="btn btn-success js-add">
+                    </div>
                 </div>
-                <div class="col-lg-6">
-                    <input onclick="change(this)" data-food-id="@item.id" value="Add" type="button" id="Add" class="btn btn-success js-add">
-                </div>
-            </div>
-                    }
-               
-                <br />
-                <br />
-                @using (Html.BeginForm("Food", "Foods"))
-                {
+
+            }
+
+            <br />
+            <br />
+            @using (Html.BeginForm("Food", "Foods"))
+            {
                 <div class="row text-center">
                     <input type="submit" class="btn btn-success" />
                     @Html.ActionLink("Create", "Create", "Foods", new { @class = "btn btn-success" })
                 </div>
-                }
-            </div>
+            }
+        </div>
         <div class="col-lg-1">
             <div class="vl"></div>
         </div>
         <div class="col-lg-7">
             <div id="okk" class="col-9" style="display:none; color:white">
-
+                <div style="font-size:25px; color:white; font-family:fantasy" id="name"></div>
                 <img class="image img-thumbnail" style="width:70%; height:320px;" />
-                <div>My meal for today is <div id="info"></div></div>
+                <div style="font-size:20px; color:white; font-family:fantasy" >My meal for today has <span id="kcal"></span></div>
+                <div style="font-size:20px; color:white; font-family:fantasy" id="info"></div>
                 <br />
 
             </div>
 
         </div>
-       
+
     </div>
 
 </body>
 
 @section scripts{
-    <style>
-        .vl {
-            border-left: 2px solid green;
-            height: 900px;
-        }
-    </style>
+  
     <script type="text/javascript">
         $(document).ready(function () {
             $(".js-food").click(function () {
@@ -66,13 +66,16 @@
                 var pic = $(this).data('img');
                 var kcal = $(this).data('kcal')
                 var desc = $(this).data('desc')
-                $("#info").text("Name " + name + " id=" + idFood + " kcal: " + kcal + pic + " " + desc);
+                $("#name").text(name);
+                $("#kcal").text(kcal + "kcal per gram.");
+                $("#info").text(desc);
                 $(".image").attr('src', '/Images/Food/' + pic);
                 $("#okk").show();
-
             });
         });
     </script>
+
+
     <script type="text/javascript">
         $(document).ready(function () {
             $(".js-add").click(function () {
@@ -81,7 +84,7 @@
                     url: "/Foods/Add/" + idFood,
                     method: "GET",
                     success: function () {
-                     }
+                    }
                 });
 
             });
@@ -96,4 +99,10 @@
         }
     </script>
 
+    <style>
+        .vl {
+            border-left: 2px solid green;
+            height: 900px;
+        }
+    </style>
 }
